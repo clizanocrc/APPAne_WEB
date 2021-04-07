@@ -1,21 +1,20 @@
-import React, { createContext, useCallback, useContext, useState } from "react";
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useReducer,
+} from "react";
 import { fetchSinToken, fetchConToken } from "../helpers/fetch";
+import { authReducer } from "../reducers/authReducer";
 import { MatrimoniosContext } from "../context/MatrimoniosContext";
+import { registraLogin, registraLogout } from "./actions/authActions";
+import { initialState } from "../context/initialState/authInicialState";
 
 export const AuthContext = createContext();
 
-const initialState = {
-  uid: null,
-  checking: true,
-  logged: false,
-  name: null,
-  correo: null,
-  rol: null,
-};
-
 export const AuthProvider = ({ children }) => {
   const { cargaMatrimonios, purgaMatrimonios } = useContext(MatrimoniosContext);
-  const [auth, setAuth] = useState(initialState);
+  const [auth, dispatch] = useReducer(authReducer, initialState);
 
   const login = async (correo, password) => {
     const resp = await fetchSinToken(
@@ -23,18 +22,9 @@ export const AuthProvider = ({ children }) => {
       { correo, password },
       "POST"
     );
-
     if (resp.ok) {
       localStorage.setItem("token", resp.token);
-      const { uid, correo, nombre, rol } = resp.usuario;
-      setAuth({
-        uid,
-        checking: false,
-        logged: true,
-        name: nombre,
-        correo,
-        rol,
-      });
+      registraLogin(resp, dispatch);
       cargaMatrimonios();
     }
     return { ok: resp.ok, msg: resp.msg };
@@ -43,20 +33,12 @@ export const AuthProvider = ({ children }) => {
   const register = async (correo, password, name) => {
     const resp = await fetchSinToken(
       "usuarios",
-      { correo, password, nombre: name, rol: "USER_ROLE" },
+      { correo, password, nombre: name, rol: "NEW_USER_ROLE" },
       "POST"
     );
     if (resp.ok) {
       localStorage.setItem("token", resp.token);
-      const { uid, correo, nombre, rol } = resp.usuario;
-      setAuth({
-        uid,
-        checking: false,
-        logged: true,
-        name: nombre,
-        correo,
-        rol,
-      });
+      registraLogin(resp, dispatch);
       cargaMatrimonios();
       return { ok: resp.ok, msg: resp.msg };
     } else {
@@ -68,38 +50,16 @@ export const AuthProvider = ({ children }) => {
     const token = localStorage.getItem("token");
     //Si el token no existe
     if (!token) {
-      setAuth({
-        uid: null,
-        checking: false,
-        logged: false,
-        name: null,
-        correo: null,
-        rol: null,
-      });
+      registraLogout(dispatch);
       return { ok: false, msg: "Token no existe" };
     }
     const resp = await fetchConToken("auth/");
     if (resp.ok) {
       localStorage.setItem("token", resp.token);
-      const { uid, correo, nombre, rol } = resp.usuario;
-      setAuth({
-        uid,
-        checking: false,
-        logged: true,
-        name: nombre,
-        correo,
-        rol,
-      });
+      registraLogin(resp, dispatch);
       cargaMatrimonios();
     } else {
-      setAuth({
-        uid: null,
-        checking: false,
-        logged: false,
-        name: null,
-        correo: null,
-        rol: null,
-      });
+      registraLogout(dispatch);
     }
     return { ok: resp.ok, msg: resp.msg };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -107,12 +67,8 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     purgaMatrimonios();
+    registraLogout(dispatch);
     localStorage.removeItem("token");
-    setAuth({
-      checking: false,
-      logged: false,
-    });
-    // dispatch({ type: types.purgarChat });
   };
 
   return (

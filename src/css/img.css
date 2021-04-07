@@ -1,0 +1,6 @@
+.imagen {
+  height: 15px;
+  width: 15px;
+  position: absolute;
+  flex: inherit;
+}

@@ -1,19 +1,13 @@
-import React, { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
-import { MatrimoniosContext } from "../context/MatrimoniosContext";
-
+import React from "react";
+import { NavbarLeft } from "../components/ui/NavbarLeft";
 export const PrincipalPage = () => {
-  const { auth, logout } = useContext(AuthContext);
-  const { state } = useContext(MatrimoniosContext);
-  const { name } = auth;
-  console.log(state.total);
-
   return (
-    <div>
-      <h1>Hola {name}</h1>
-      <button onClick={logout} className="btn btn-danger">
-        Salir
-      </button>
-    </div>
+    <>
+      <div>
+        <NavbarLeft />
+      </div>
+
+      <div className="usuario_pantalla">Pagina Principal</div>
+    </>
   );
 };

@@ -1,0 +1,13 @@
+.navbar_left {
+  background: #f8f8f8 none repeat scroll 0 0;
+  float: left;
+  overflow: hidden;
+  position: absolute;
+  width: 15%;
+  height: 100%;
+  border-right: 1px solid #c4c4c4;
+}
+
+.usuario_pantalla {
+  margin-left: 16%;
+}

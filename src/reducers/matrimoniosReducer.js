@@ -1,16 +1,16 @@
-import { initialState } from "../context/MatrimoniosInitialState";
+import { initialState } from "../context/initialState/matrimoniosInitialState";
 import { types } from "../types/types";
 
-export const matrimoniosReducer = (state, action) => {
+export const matrimoniosReducer = (matrimonios, action) => {
   switch (action.type) {
     case types.matrimoniosCargados:
       return {
-        ...state,
+        ...matrimonios,
         ...action.payload,
       };
     case types.matrimoniosPurga:
       return initialState;
     default:
-      return state;
+      return matrimonios;
   }
 };

@@ -1,19 +1,17 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
+import { UsuariosPage } from "../components/users/UsuariosPage";
 
 import "../css/login-register.css";
-import { LoginPage } from "../pages/auth/LoginPage";
-import { RegisterPage } from "../pages/auth/RegisterPage";
 
-export const AuthRouter = () => {
+export const UsuariosRouter = () => {
   return (
     <div className="limiter">
       <div className="container-login100">
         <div className="wrap-login100 p-t-50 p-b-90">
           <Switch>
-            <Route exact path="/auth/login" component={LoginPage} />
-            <Route exact path="/auth/register" component={RegisterPage} />
-            <Redirect to="/auth/login" />
+            <Route exact path="/usuarios" component={UsuariosPage} />
+            <Redirect to="/usuarios" />
           </Switch>
         </div>
       </div>
