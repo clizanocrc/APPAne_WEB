@@ -3,12 +3,12 @@ import { NavbarLeft } from "../../components/ui/NavbarLeft";
 
 export const ParamPage = () => {
   return (
-    <>
-      <div>
+    <div className="flexbox-container">
+      <div className="col-md-2">
         <NavbarLeft />
       </div>
 
-      <div className="usuario_pantalla">Pantalla de Parámetros</div>
-    </>
+      <div>Pantalla de Parámetros</div>
+    </div>
   );
 };

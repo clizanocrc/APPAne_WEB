@@ -8,6 +8,7 @@ export const MenuItemPerfil = ({ route, caption }) => {
   return (
     <div style={{ flexDirection: "row", alignItems: "self-start" }}>
       <NavLink activeClassName="active" className={style} exact to={route}>
+        <i className="fa fa-user bigicon mr-2"></i>
         {caption}
       </NavLink>
       {/* <img src={heart} alt="" className="imagen" /> */}

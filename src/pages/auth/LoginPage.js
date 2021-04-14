@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { LogoEmm } from "../../components/ui/atom/FormControls";
 import { AuthContext } from "../../context/AuthContext";
 
 export const LoginPage = () => {
@@ -57,10 +58,13 @@ export const LoginPage = () => {
 
   return (
     <form
-      className="login100-form validate-form flex-sb flex-w"
+      className="login100-form validate-form flex-sb flex-w animate__animated animate__fadeInLeft"
       onSubmit={onSubmit}
     >
-      <span className="login100-form-title mb-3">APP Ane - Ingreso</span>
+      <span className="login100-form-title mb-3">
+        <LogoEmm />
+        APP Ane - Ingreso
+      </span>
 
       <div className="wrap-input100 validate-input mb-3">
         <input

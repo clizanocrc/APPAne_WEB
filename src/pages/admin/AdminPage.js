@@ -3,12 +3,12 @@ import { NavbarLeft } from "../../components/ui/NavbarLeft";
 
 export const AdminPage = () => {
   return (
-    <>
-      <div>
+    <div className="flexbox-container">
+      <div className="col-md-2">
         <NavbarLeft />
       </div>
 
-      <div className="usuario_pantalla">Panel de Administración</div>
-    </>
+      <div>Panel de Administración</div>
+    </div>
   );
 };

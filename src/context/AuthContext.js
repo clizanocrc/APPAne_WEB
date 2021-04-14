@@ -6,7 +6,12 @@ import React, {
 } from "react";
 import { fetchSinToken, fetchConToken } from "../helpers/fetch";
 import { authReducer } from "../reducers/authReducer";
+
 import { MatrimoniosContext } from "../context/MatrimoniosContext";
+import { ConyuguesContext } from "./ConyuguesContext";
+import { DiocesisContext } from "./DiocesisContext";
+import { UsuariosContext } from "./UsuariosContext";
+
 import { registraLogin, registraLogout } from "./actions/authActions";
 import { initialState } from "../context/initialState/authInicialState";
 
@@ -14,6 +19,9 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const { cargaMatrimonios, purgaMatrimonios } = useContext(MatrimoniosContext);
+  const { cargaDiocesis, purgaDiocesis } = useContext(DiocesisContext);
+  const { cargaConyugues, purgaConyuges } = useContext(ConyuguesContext);
+  const { cargaUsuarios, purgaUsuarios } = useContext(UsuariosContext);
   const [auth, dispatch] = useReducer(authReducer, initialState);
 
   const login = async (correo, password) => {
@@ -25,7 +33,10 @@ export const AuthProvider = ({ children }) => {
     if (resp.ok) {
       localStorage.setItem("token", resp.token);
       registraLogin(resp, dispatch);
+      cargaDiocesis();
+      cargaConyugues();
       cargaMatrimonios();
+      cargaUsuarios();
     }
     return { ok: resp.ok, msg: resp.msg };
   };
@@ -39,7 +50,11 @@ export const AuthProvider = ({ children }) => {
     if (resp.ok) {
       localStorage.setItem("token", resp.token);
       registraLogin(resp, dispatch);
+      cargaConyugues();
+      cargaDiocesis();
       cargaMatrimonios();
+      cargaUsuarios();
+
       return { ok: resp.ok, msg: resp.msg };
     } else {
       return { ok: resp.ok, msg: resp.msg, errores: resp.errors };
@@ -57,7 +72,10 @@ export const AuthProvider = ({ children }) => {
     if (resp.ok) {
       localStorage.setItem("token", resp.token);
       registraLogin(resp, dispatch);
+      cargaConyugues();
+      cargaDiocesis();
       cargaMatrimonios();
+      cargaUsuarios();
     } else {
       registraLogout(dispatch);
     }
@@ -66,7 +84,10 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const logout = () => {
+    purgaConyuges();
+    purgaDiocesis();
     purgaMatrimonios();
+    purgaUsuarios();
     registraLogout(dispatch);
     localStorage.removeItem("token");
   };

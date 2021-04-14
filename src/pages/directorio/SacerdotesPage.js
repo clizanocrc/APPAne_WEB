@@ -3,12 +3,12 @@ import { NavbarLeft } from "../../components/ui/NavbarLeft";
 
 export const SacerdotesPage = () => {
   return (
-    <>
-      <div>
+    <div className="flexbox-container">
+      <div className="col-md-2">
         <NavbarLeft />
       </div>
 
-      <div className="usuario_pantalla">Sacerdotes</div>
-    </>
+      <div>Sacerdotes</div>
+    </div>
   );
 };

@@ -11,8 +11,22 @@ export const registraMatrimonios = (resp, dispatch) => {
   });
 };
 
+export const seleccionaMatrimonio = (payload, dispatch) => {
+  dispatch({
+    type: types.matrimonioSeleccionado,
+    payload,
+  });
+};
+
 export const LimpiaMatrimonios = (dispatch) => {
   dispatch({
     type: types.matrimoniosPurga,
+  });
+};
+
+export const addMatrimonio = (payload, dispatch) => {
+  dispatch({
+    type: types.matrimonioAdd,
+    payload,
   });
 };

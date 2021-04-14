@@ -3,12 +3,12 @@ import { NavbarLeft } from "../../components/ui/NavbarLeft";
 
 export const NotificacionSend = () => {
   return (
-    <>
-      <div>
+    <div className="flexbox-container">
+      <div className="col-md-2">
         <NavbarLeft />
       </div>
 
-      <div className="usuario_pantalla">Envío de Notificaciones</div>
-    </>
+      <div>Envío de Notificaciones</div>
+    </div>
   );
 };

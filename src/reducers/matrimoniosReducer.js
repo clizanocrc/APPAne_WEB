@@ -8,6 +8,19 @@ export const matrimoniosReducer = (matrimonios, action) => {
         ...matrimonios,
         ...action.payload,
       };
+
+    case types.matrimonioSeleccionado:
+      return {
+        ...matrimonios,
+        matrimonioSeleccionado: action.payload,
+      };
+
+    case types.matrimonioAdd:
+      return {
+        ...matrimonios,
+        matrimonios: [...matrimonios.matrimonios, action.payload],
+      };
+
     case types.matrimoniosPurga:
       return initialState;
     default:

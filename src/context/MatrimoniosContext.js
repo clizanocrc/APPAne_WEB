@@ -5,6 +5,8 @@ import { matrimoniosReducer } from "../reducers/matrimoniosReducer";
 import {
   registraMatrimonios,
   LimpiaMatrimonios,
+  seleccionaMatrimonio,
+  addMatrimonio,
 } from "./actions/matrimoniosActions";
 import { initialState } from "./initialState/matrimoniosInitialState";
 
@@ -33,13 +35,34 @@ export const MatrimoniosProvider = ({ children }) => {
     }
   };
 
+  const selecMatrimonio = (matrimonio) => {
+    seleccionaMatrimonio(matrimonio, dispatch);
+  };
+
   const purgaMatrimonios = () => {
     LimpiaMatrimonios(dispatch);
   };
 
+  const agregaMatrimonio = (data) => {
+    console.log(data);
+    addMatrimonio(data, dispatch);
+  };
+
+  const editarMatrimonio = (data) => {
+    console.log(data);
+    // addMatrimonio(data, dispatch);
+  };
+
   return (
     <MatrimoniosContext.Provider
-      value={{ matrimonios, cargaMatrimonios, purgaMatrimonios }}
+      value={{
+        matrimonios,
+        cargaMatrimonios,
+        purgaMatrimonios,
+        selecMatrimonio,
+        agregaMatrimonio,
+        editarMatrimonio,
+      }}
     >
       {children}
     </MatrimoniosContext.Provider>

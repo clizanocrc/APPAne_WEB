@@ -41,3 +41,29 @@ export const fetchConToken = async (endpoint, data, method = "GET") => {
     return await resp.json();
   }
 };
+
+export const fetchImgConToken = async (endpoint, data, method = "GET") => {
+  const url = `${baseUrl}/${endpoint}`;
+  const token = localStorage.getItem("token") || undefined;
+
+  if (method === "GET") {
+    const resp = await fetch(url, {
+      headers: {
+        "x-token": token,
+      },
+    });
+    return await resp.json();
+  } else {
+    var formData = new FormData();
+    formData.append("archivo", data[0]);
+    const resp = await fetch(url, {
+      method,
+      body: formData,
+      headers: {
+        // "Content-type": "application/json",
+        "x-token": token,
+      },
+    });
+    return await resp.json();
+  }
+};
