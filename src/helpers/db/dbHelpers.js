@@ -20,3 +20,21 @@ export const comentariosAvg = (id, comentarios = []) => {
   );
   return comentariosBlog.length;
 };
+
+export const blogsXCategoria = (categorias, blogs) => {
+  const categoriasDB = [];
+  const categoriasBlogs = [];
+  const categoriasContador = [];
+
+  categorias.map((d) => categoriasDB.push(d.descripcion));
+  blogs.map((e) => categoriasBlogs.push(e.categoria.descripcion));
+
+  for (var i = 0; i < categoriasBlogs.length; i++) {
+    if (!(categoriasBlogs[i] in categoriasContador)) {
+      categoriasContador[categoriasBlogs[i]] = 1;
+    } else {
+      categoriasContador[categoriasBlogs[i]]++;
+    }
+  }
+  return categoriasContador;
+};

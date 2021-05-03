@@ -4,4 +4,6 @@ export const initialState = {
   blogs: [], //Todos los Blogs
   comentarios: [],
   likes: [],
+  categorias: [],
+  categoriaSeleccionada: null,
 };

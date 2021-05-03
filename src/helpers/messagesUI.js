@@ -26,10 +26,6 @@ export const exitoFire = (texto = "Exitoso", time = 1500) => {
   });
 };
 
-// export const exitoFireOK = (texto = "Exitoso") => {
-//   Swal.fire("Exito", { texto }, "success");
-// };
-
 export const errorSimpleFire = (texto = "Error") => {
   Swal.fire("Error", { texto }, "error");
 };
@@ -43,4 +39,23 @@ export const exitoFireOK = (texto = "Exitoso") => {
     imageWidth: 225,
     imageHeight: 275,
   });
+};
+
+export const confirmDeleteFire = async (titulo) => {
+  let resultado;
+  await Swal.fire({
+    title: titulo,
+    showDenyButton: true,
+    // showCancelButton: true,
+    confirmButtonText: `Eliminar`,
+    denyButtonText: `Cancelar`,
+  }).then((result) => {
+    /* Read more about isConfirmed, isDenied below */
+    if (result.isConfirmed) {
+      resultado = true;
+    } else if (result.isDenied) {
+      resultado = false;
+    }
+  });
+  return resultado;
 };

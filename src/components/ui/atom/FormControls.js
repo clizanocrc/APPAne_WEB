@@ -141,6 +141,52 @@ export const SelectItems = ({ label, name, value, callBack, data }) => {
   );
 };
 
+export const SelectItemsCatBlog = ({ label, name, value, callBack, data }) => {
+  return (
+    <div className="input-group" style={{ alignItems: "center" }}>
+      <label className="mr-2 col-md-1" style={{ textAlign: "start" }}>
+        {label}
+      </label>
+      <select
+        className="form-control ml-2 col-md-4"
+        name={name}
+        value={value}
+        onChange={callBack}
+      >
+        <option value="0">Selecciona un Valor</option>
+        {data.map((item) => (
+          <option key={item.id} value={item.id}>
+            {item.categoria}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+};
+
+export const SelectItemsCatBlogView = ({ label, name, value, data }) => {
+  return (
+    <div className="input-group" style={{ alignItems: "center" }}>
+      <label className="mr-2 col-md-1" style={{ textAlign: "start" }}>
+        {label}
+      </label>
+      <select
+        className="form-control ml-2 col-md-4"
+        name={name}
+        value={value}
+        disabled
+      >
+        {/* <option value="0">Selecciona un Valor</option> */}
+        {data.map((item) => (
+          <option key={item.id} value={item.id}>
+            {item.categoria}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+};
+
 export const SelectDateddMM = ({ label, name, value, callBack }) => {
   return (
     <div className="input-group" style={{ alignItems: "center" }}>

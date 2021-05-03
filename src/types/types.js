@@ -5,6 +5,10 @@ export const types = {
   blogCargados: "[Blog] Blog Cargados",
   blogPurga: "[Blog] Blog Purgados",
   blogSeleccionado: "[Blog] Selecciona Blog",
+
+  blogCategoriaSeleccionada: "[Blog] Selecciona Categoria",
+  blogCategoriaLimpia: "[Blog] Limpia Categoria Seleccionada",
+
   blogAdd: "[Blog] Crear Blog",
   blogDelete: "[Blog] Eliminar Blog",
   blogUpdate: "[Blog] Actializar Blog",

@@ -31,12 +31,6 @@ export const BlogComentariosModal = () => {
     comentario: "",
   });
 
-  // const handleClick = (e) => {
-  //   e.preventDefault();
-  //   setAdd(!add);
-  //   reset();
-  // };
-
   const handleSave = async (e) => {
     e.preventDefault();
     const resp = await blogComentarioAdd({

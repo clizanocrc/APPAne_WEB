@@ -2,6 +2,7 @@ import React, { createContext, useReducer } from "react";
 import Swal from "sweetalert2";
 import { fetchConToken } from "../helpers/fetch";
 import { blogReducer } from "../reducers/blogReducer";
+import { types } from "../types/types";
 import {
   registraBlogs,
   seleccionaBlog,
@@ -58,6 +59,19 @@ export const BlogsProvider = ({ children }) => {
   const eliminarBlog = (data) => {
     deleteBlog(data, dispatch);
   };
+
+  const seleccionaCat = (data) => {
+    dispatch({
+      type: types.blogCategoriaSeleccionada,
+      payload: data,
+    });
+  };
+  const LimpiaseleccionaCat = () => {
+    dispatch({
+      type: types.blogCategoriaLimpia,
+    });
+  };
+
   //#endregion Blog
   //#region Likes
   //Likes
@@ -102,6 +116,8 @@ export const BlogsProvider = ({ children }) => {
         registraComentarios,
         editarComentario,
         eliminarComentario,
+        seleccionaCat,
+        LimpiaseleccionaCat,
       }}
     >
       {children}

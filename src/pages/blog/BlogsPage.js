@@ -6,6 +6,16 @@ import { BlogsContext } from "../../context/BlogsContext";
 export const BlogsPage = () => {
   const { blogs } = useContext(BlogsContext);
 
+  let blogsRender = [];
+
+  if (blogs.categoriaSeleccionada) {
+    blogsRender = blogs.blogs.filter(
+      (blog) => blog.categoria._id === blogs.categoriaSeleccionada
+    );
+  } else {
+    blogsRender = blogs.blogs;
+  }
+
   return (
     // <div>
     <div className="flexbox-container">
@@ -18,7 +28,7 @@ export const BlogsPage = () => {
         style={{ height: "85vh", overflowY: "scroll" }}
       >
         <div>
-          {blogs.blogs.map((blog) => (
+          {blogsRender.map((blog) => (
             <BlogCard key={blog.id} blog={blog} />
           ))}
         </div>

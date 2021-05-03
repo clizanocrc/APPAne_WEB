@@ -8,11 +8,9 @@
 
 //TODO: Quitar KeySensitive en los correos
 
-//TODO: Evaluar quitar los archivos de actions yu hacerlo con el dispatch directamente.
+//TODO: Evaluar quitar los archivos de actions y hacerlo con el dispatch directamente.
 
 //Ojo con estos de aqui para abajo
-
-//TODO: Eliminar un Blog
 
 //TODO: Mostar las categorias de los blogs en los mismos.
 

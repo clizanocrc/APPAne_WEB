@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import {
+  SelectItemsCatBlog,
   TextArea,
   TextControlCol,
 } from "../../components/ui/atom/FormControls";
@@ -16,12 +17,12 @@ import { blogCrea } from "../../controlers/blogs";
 
 export const BlogPageAdd = () => {
   const history = useHistory();
-  const { cargaBlogs } = useContext(BlogsContext);
+  const { blogs, cargaBlogs } = useContext(BlogsContext);
+  const { categorias } = blogs;
   const { showModalLoading, hideModalLoading } = useContext(AppContext);
-
   const [formValues, onChange, reset, setFormValues] = useForm(initialFormBlog);
 
-  // console.log(formValues.images);
+  // console.log(categorias);
 
   const updateFilesCb = (e) => {
     setFormValues({
@@ -90,6 +91,13 @@ export const BlogPageAdd = () => {
           name={"titulo"}
           value={formValues.titulo}
           callBack={onChange}
+        />
+        <SelectItemsCatBlog
+          label={"Categoría"}
+          name={"categoria"}
+          value={formValues.categoria}
+          callBack={onChange}
+          data={categorias}
         />
         <TextArea
           label={"Descripción Corta*"}

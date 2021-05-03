@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import {
+  SelectItemsCatBlog,
   TextArea,
   TextControlCol,
 } from "../../components/ui/atom/FormControls";
@@ -17,6 +18,7 @@ import { ImgBlog } from "../../components/blog/AutorPubli";
 export const BlogPageEdit = () => {
   const history = useHistory();
   const { cargaBlogs, blogs } = useContext(BlogsContext);
+  const { categorias } = blogs;
   const { showModalLoading, hideModalLoading } = useContext(AppContext);
   const blog = blogs.blogSeleccionado;
 
@@ -96,6 +98,13 @@ export const BlogPageEdit = () => {
           name={"titulo"}
           value={formValues.titulo}
           callBack={onChange}
+        />
+        <SelectItemsCatBlog
+          label={"Categoría"}
+          name={"categoria"}
+          value={formValues.categoria}
+          callBack={onChange}
+          data={categorias}
         />
         <ImgBlog
           image={formValues.images}

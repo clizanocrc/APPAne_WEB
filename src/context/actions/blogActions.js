@@ -1,7 +1,7 @@
 import { types } from "../../types/types";
 
 export const registraBlogs = (resp, dispatch) => {
-  const { total, blogs, comentarios, likes } = resp;
+  const { total, blogs, comentarios, likes, categorias } = resp;
   dispatch({
     type: types.blogCargados,
     payload: {
@@ -9,6 +9,7 @@ export const registraBlogs = (resp, dispatch) => {
       blogs: blogs,
       comentarios: comentarios,
       likes: likes,
+      categorias: categorias,
     },
   });
 };

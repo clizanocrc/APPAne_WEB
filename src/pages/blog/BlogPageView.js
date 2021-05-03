@@ -9,15 +9,20 @@ import { BlogLikes } from "../../components/blog/BlogLikes";
 import { Divider } from "@material-ui/core";
 import { AuthContext } from "../../context/AuthContext";
 import { useHistory } from "react-router";
+import { AppContext } from "../../context/AppContext";
+import { blogDelete } from "../../controlers/blogs";
+import { confirmDeleteFire, exitoFire } from "../../helpers/messagesUI";
+import { SelectItemsCatBlogView } from "../../components/ui/atom/FormControls";
 
 export const BlogPageView = () => {
-  const { blogs } = useContext(BlogsContext);
+  const { blogs, cargaBlogs } = useContext(BlogsContext);
+  const { categorias } = blogs;
   const { auth } = useContext(AuthContext);
   const history = useHistory();
-  // const [eliminar, setEliminar] = useState({});
+  const { showModalLoading, hideModalLoading } = useContext(AppContext);
+
   const comentarios = blogs.comentarios;
   const blog = blogs.blogSeleccionado;
-
   const handleEditClick = (e) => {
     e.preventDefault();
     history.push("/home/blogedit");
@@ -25,12 +30,18 @@ export const BlogPageView = () => {
 
   const handleDelete = async (e) => {
     e.preventDefault();
-    console.log("Eliminado");
+    const confirm = await confirmDeleteFire("Desea eliminar el blog?");
+    if (confirm) {
+      showModalLoading();
+      const resp = await blogDelete(blog);
+      if (resp.ok) {
+        cargaBlogs(resp.data);
+        history.push("/home/blogs");
+        exitoFire("Blog eliminado...!");
+      }
+      hideModalLoading();
+    }
   };
-
-  // useEffect(() => {
-  //   console.log(eliminar.isConfirmed);
-  // }, [eliminar]);
 
   return (
     <div className="flexbox-container">
@@ -65,6 +76,12 @@ export const BlogPageView = () => {
           fechaPubli={blog.fechaPubli}
           autor={blog.usuario.nombre}
           aling={"column"}
+        />
+        <SelectItemsCatBlogView
+          label={"Categoría"}
+          name={"categoria"}
+          value={blog.categoria._id}
+          data={categorias}
         />
         <TextEditorView contenido={blog.contenido} />
       </div>

@@ -33,6 +33,19 @@ export const blogReducer = (blogs, action) => {
       };
     case types.blogPurga:
       return initialState;
+
+    case types.blogCategoriaSeleccionada:
+      return {
+        ...blogs,
+        categoriaSeleccionada: action.payload,
+      };
+
+    case types.blogCategoriaLimpia:
+      return {
+        ...blogs,
+        categoriaSeleccionada: null,
+      };
+
     // Likes
     case types.blogCargaLikes:
       return {

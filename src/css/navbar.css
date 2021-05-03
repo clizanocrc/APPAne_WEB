@@ -106,3 +106,21 @@
   overflow-y: scroll;
   align-items: center;
 }
+
+/* Link */
+a:link {
+  color: blue;
+  text-decoration: none;
+}
+a:visited {
+  color: gray;
+  text-decoration: none;
+}
+a:active {
+  text-decoration: none;
+}
+a:hover {
+  color: grey;
+  background-color: white;
+  text-decoration: underline;
+}

@@ -23,6 +23,7 @@ export const DirectorioPage = () => {
           etiqueta="Matrimonios por Diócesis"
         />
       </div>
+
       <div
         className="m-4  animate__animated animate__bounceInLeft"
         style={{
