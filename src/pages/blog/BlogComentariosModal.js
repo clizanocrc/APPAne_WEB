@@ -69,6 +69,17 @@ export const BlogComentariosModal = () => {
         <div>
           <h5 className="ml-2 mr-2">Comentarios</h5>
         </div>
+        <div className="col-md-12">
+          <TextAreaNoIcon
+            label={"Comentar"}
+            name={"comentario"}
+            value={formValues.comentario}
+            callBack={onChange}
+          />
+          <button className="btn btn-outline" onClick={handleSave}>
+            <i className="fa fa-save" /> Guardar Comentario
+          </button>
+        </div>
       </div>
       <div
         className="container"
@@ -79,17 +90,6 @@ export const BlogComentariosModal = () => {
           <BlogComentarios id={blogs.blogSeleccionado.id} />
         </div>
       </div>
-      <div className="col-md-12">
-        <TextAreaNoIcon
-          label={"Comentar"}
-          name={"comentario"}
-          value={formValues.comentario}
-          callBack={onChange}
-        />
-      </div>
-      <button className="btn btn-outline" onClick={handleSave}>
-        <i className="fa fa-save" /> Guardar Comentario
-      </button>
     </Modal>
   );
 };
