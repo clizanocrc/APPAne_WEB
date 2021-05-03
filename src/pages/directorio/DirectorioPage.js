@@ -23,17 +23,43 @@ export const DirectorioPage = () => {
           etiqueta="Matrimonios por Diócesis"
         />
       </div>
-      <div>
-        {diocesis.diocesis.map((dioce) => (
-          <li key={dioce.id}>
-            {dioce.nombre}
-            {" :   "}
-            {diocesisContador[dioce.nombre]
-              ? diocesisContador[dioce.nombre]
-              : 0}
-          </li>
-        ))}
-        <div>Total de Matrimonios {matrimonios.total}</div>
+      <div
+        className="m-4  animate__animated animate__bounceInLeft"
+        style={{
+          borderColor: "Highlight",
+          borderStyle: "solid",
+          borderRadius: 30,
+          backgroundColor: "lightsteelblue",
+        }}
+      >
+        <div className="m-4">
+          <div
+            style={{
+              backgroundColor: "aqua",
+              textAlign: "center",
+            }}
+            className="form-control"
+          >
+            Matrimonios por Diócesis
+          </div>
+          {diocesis.diocesis.map((dioce) => (
+            <li className="form-control" key={dioce.id}>
+              {dioce.nombre}
+              {" :   "}
+              {diocesisContador[dioce.nombre]
+                ? diocesisContador[dioce.nombre]
+                : 0}
+            </li>
+          ))}
+          <div
+            style={{
+              backgroundColor: "aqua",
+            }}
+            className="form-control"
+          >
+            Total de Matrimonios {matrimonios.total}
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -5,4 +5,5 @@ export const initialState = {
   name: null,
   correo: null,
   rol: null,
+  images: null,
 };

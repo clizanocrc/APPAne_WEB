@@ -13,7 +13,7 @@ import { useForm } from "../../hooks/useForm";
 export const UsuariosAltaForm = ({ usuario }) => {
   const { auth } = useContext(AuthContext);
   const { showModalLoading, hideModalLoading } = useContext(AppContext);
-  const [formValues, handleInputChange] = useForm(usuario);
+  const [formValues, onChange] = useForm(usuario);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -25,33 +25,34 @@ export const UsuariosAltaForm = ({ usuario }) => {
   };
 
   return (
-    <div className="div-titulo">
+    // <div className="div-titulo">
+    <div className="flexbox-container">
       <form className="input-group" onSubmit={onSubmit}>
         <TextControlCol
           label="Nombre"
           name="nombre"
           value={formValues.nombre}
-          callBack={handleInputChange}
+          callBack={onChange}
           activado={false}
         />
         <TextControlCol
           label="Correo"
           name="correo"
           value={formValues.correo}
-          callBack={handleInputChange}
+          callBack={onChange}
           activado={false}
         />
         {auth.rol === "SUPER_ADMIN_ROLE" ? (
           <RoleControlCol
             name="rol"
             value={formValues.rol}
-            callBack={handleInputChange}
+            callBack={onChange}
           />
         ) : (
           <RoleControlColAlta
             name="rol"
             value={formValues.rol}
-            callBack={handleInputChange}
+            callBack={onChange}
           />
         )}
         <button type="submit" className="btn btn-primary ml-2">

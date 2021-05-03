@@ -4,3 +4,56 @@
   position: absolute;
   flex: inherit;
 }
+
+.imagenBlog {
+  height: 250px;
+  width: 300px;
+}
+
+.imagenBlogajustada {
+  height: 250px;
+  width: 300px;
+  object-fit: contain;
+  object-position: center center;
+}
+
+.imagenBlog {
+  height: 50%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center center;
+  margin-top: 10px;
+}
+
+.imgIco {
+  height: 50px;
+  width: 50px;
+}
+
+.doc {
+  display: flex;
+  flex-flow: column wrap;
+  /* width: 100vw;
+  height: 100vh; */
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+}
+.box {
+  /* width: 300px;
+  height: 300px; */
+  background: transparent;
+  overflow: hidden;
+}
+
+.box img {
+  width: 100%;
+  height: auto;
+}
+@supports (object-fit: cover) {
+  .box img {
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+}

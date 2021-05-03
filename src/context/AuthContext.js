@@ -4,7 +4,11 @@ import React, {
   useContext,
   useReducer,
 } from "react";
-import { fetchSinToken, fetchConToken } from "../helpers/fetch";
+import {
+  fetchSinToken,
+  fetchConToken,
+  fetchImgConToken,
+} from "../helpers/fetch";
 import { authReducer } from "../reducers/authReducer";
 
 import { MatrimoniosContext } from "../context/MatrimoniosContext";
@@ -14,6 +18,8 @@ import { UsuariosContext } from "./UsuariosContext";
 
 import { registraLogin, registraLogout } from "./actions/authActions";
 import { initialState } from "../context/initialState/authInicialState";
+import { AppContext } from "./AppContext";
+import { BlogsContext } from "./BlogsContext";
 
 export const AuthContext = createContext();
 
@@ -21,7 +27,9 @@ export const AuthProvider = ({ children }) => {
   const { cargaMatrimonios, purgaMatrimonios } = useContext(MatrimoniosContext);
   const { cargaDiocesis, purgaDiocesis } = useContext(DiocesisContext);
   const { cargaConyugues, purgaConyuges } = useContext(ConyuguesContext);
+  const { cargaBlogs, purgaBlogs } = useContext(BlogsContext);
   const { cargaUsuarios, purgaUsuarios } = useContext(UsuariosContext);
+  const { cargaEventos, cargaParams, limpiaParams } = useContext(AppContext);
   const [auth, dispatch] = useReducer(authReducer, initialState);
 
   const login = async (correo, password) => {
@@ -36,7 +44,30 @@ export const AuthProvider = ({ children }) => {
       cargaDiocesis();
       cargaConyugues();
       cargaMatrimonios();
+      cargaBlogs();
       cargaUsuarios();
+      cargaEventos("desc");
+      cargaParams();
+    }
+    return { ok: resp.ok, msg: resp.msg };
+  };
+
+  const updatePerfilUsuario = async (uid, data, imgActual) => {
+    const { images, ...resto } = data;
+    if (imgActual !== images) {
+      await fetchImgConToken(`uploadsimg/usuarios/${uid}`, images, "PUT");
+    }
+    const resp = await fetchConToken(`usuarios/${uid}`, resto, "PATCH");
+    if (resp.ok) {
+      registraLogin(resp, dispatch);
+    }
+    return { ok: resp.ok, msg: resp.msg };
+  };
+
+  const updatePassUsuario = async (uid, data) => {
+    const resp = await fetchConToken(`usuarios/pass/${uid}`, data, "PATCH");
+    if (resp.ok) {
+      logout();
     }
     return { ok: resp.ok, msg: resp.msg };
   };
@@ -53,7 +84,10 @@ export const AuthProvider = ({ children }) => {
       cargaConyugues();
       cargaDiocesis();
       cargaMatrimonios();
+      cargaBlogs();
       cargaUsuarios();
+      cargaEventos("desc");
+      cargaParams();
 
       return { ok: resp.ok, msg: resp.msg };
     } else {
@@ -75,7 +109,10 @@ export const AuthProvider = ({ children }) => {
       cargaConyugues();
       cargaDiocesis();
       cargaMatrimonios();
+      cargaBlogs();
       cargaUsuarios();
+      cargaEventos("desc");
+      cargaParams();
     } else {
       registraLogout(dispatch);
     }
@@ -85,16 +122,26 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     purgaConyuges();
+    purgaBlogs();
     purgaDiocesis();
     purgaMatrimonios();
     purgaUsuarios();
     registraLogout(dispatch);
+    limpiaParams();
     localStorage.removeItem("token");
   };
 
   return (
     <AuthContext.Provider
-      value={{ auth, login, register, verificaToken, logout }}
+      value={{
+        auth,
+        login,
+        register,
+        verificaToken,
+        updatePassUsuario,
+        logout,
+        updatePerfilUsuario,
+      }}
     >
       {children}
     </AuthContext.Provider>

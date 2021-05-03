@@ -5,24 +5,15 @@ import { Divider } from "@material-ui/core";
 import { AuthContext } from "../../context/AuthContext";
 import { MenuItem } from "./atom/MenuItem";
 import { MenuItemPerfil } from "./atom/MenuItemPerfil";
-import { Search } from "./atom/FormControls";
-import { useForm } from "../../hooks/useForm";
+import { SearchForm } from "./SearchForm";
 
 export const NavbarMain = () => {
   const { auth, logout } = useContext(AuthContext);
   const history = useHistory();
-  const buscarText = "";
-  const [formValues, handleInputChange, reset] = useForm(buscarText);
 
   const handleLogout = () => {
     history.replace("/auth");
     logout();
-  };
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    console.log(formValues);
-    reset();
   };
 
   return (
@@ -33,24 +24,36 @@ export const NavbarMain = () => {
         APP Ane
       </Link>
       <div className="navbar-collapse">
-        <div className="navbar-nav">
+        <div
+          className="navbar-nav"
+          // style={{
+          //   position: "absolute",
+          // }}
+        >
           {(auth.rol === "SUPER_ADMIN_ROLE" || auth.rol === "ADMIN_ROLE") && (
-            <MenuItem route="/home/admin" caption="Parámetros" />
+            <MenuItem
+              route="/home/admin"
+              caption="Parámetros"
+              // icon="fa fa-cogs"
+            />
           )}
-          <MenuItem route="/home/directorio" caption="Directorio" />
-          <MenuItem route="/home/celebraciones" caption="Celebraciones" />
-          <MenuItem route="/home/1010" caption="1010" />
-          <MenuItem route="/home/docs" caption="Documentos" />
-          <MenuItem route="/home/news" caption="Noticias" />
+          <MenuItem
+            route="/home/directorio"
+            caption="Directorio"
+            // icon="fa fa-address-card"
+          />
+          {/* <MenuItem route="/home/docs" caption="Documentos" icon="fa fa-file" /> */}
+          {/* <MenuItem route="/home/docs" caption="Documentos" /> */}
+          {/* <MenuItem route="/home/blog" caption="Blog" icon="fa fa-blog" /> */}
+          <MenuItem route="/home/blog" caption="Blog" />
+          <MenuItem
+            route="/home/calendario"
+            caption="Calendario"
+            // icon="fa fa-calendar-alt"
+          />
         </div>
       </div>
-      <Search
-        label="Buscar"
-        name="buscar"
-        value={formValues.buscarText}
-        callBack={handleInputChange}
-        onEnd={handleSearch}
-      />
+      <SearchForm />
       <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
         <ul className="navbar-nav ml-auto">
           <Divider orientation="vertical" flexItem />

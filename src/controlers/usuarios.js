@@ -21,3 +21,18 @@ export const aupdateUsuario = async (data) => {
     console.log(error);
   }
 };
+
+// export const updatePerfilUsuario = async (uid, data) => {
+//   const { images, ...resto } = data;
+
+//   try {
+//     const resp = await fetchConToken(`usuarios/${uid}`, resto, "PATCH");
+//     if (!resp.ok) {
+//       viewErrors(resp);
+//       return false;
+//     }
+//     return true;
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };

@@ -2,36 +2,44 @@ import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { SpinerModal } from "../components/ui/atom/SpinerModal";
 import { NavbarMain } from "../components/ui/NavbarMain";
+import { CalendarModal } from "../pages/calendario/CalendarModal";
+
 import {
   PrincipalPage,
   UsuariosPage,
   AdminPage,
   DirectorioPage,
-  DocPage,
-  DocPageAdd,
+  BlogPage,
+  BlogsPage,
+  BlogPageAdd,
+  BlogPageView,
   CelebracionesPage as CelebPage,
-  CelebracionesPageAdd as CelebNewPage,
   MatrimoniosPage,
-  NewsPage,
-  NewsPageAdd,
   SacerdotesPage,
   SacerdotesPageAdd as SacerdoteAdd,
-  P1010Page,
-  P1010PageAdd,
   PerfilPage,
   ParamPage,
+  ConyugePage,
   MatrimoniosPageAdd as MatrimoniosAdd,
   MatrimoniosPageEdit as MatrimoniosEdit,
   UsuariosAltaPage,
   NotificacionSend,
   MatrimonioPage,
+  SacerdotePage,
+  SacerdotePageEdit as SacerdotesEdit,
+  CalendarScreen,
+  ConyugePageNavbar,
+  BlogPageEdit,
 } from "../pages";
+import { BlogComentariosModal } from "../pages/blog/BlogComentariosModal";
 
 export const DashboardRoutes = () => {
   return (
     <>
-      <NavbarMain />
       <SpinerModal />
+      <CalendarModal />
+      <BlogComentariosModal />
+      <NavbarMain />
       <div>
         <Switch>
           <Route exact path="/home" component={PrincipalPage} />
@@ -51,20 +59,22 @@ export const DashboardRoutes = () => {
             path="/home/matrimonioedit"
             component={MatrimoniosEdit}
           />
+          <Route exact path="/home/conyuge" component={ConyugePage} />
+          <Route exact path="/home/conyugenav" component={ConyugePageNavbar} />
+
           <Route exact path="/home/sacerdotes" component={SacerdotesPage} />
+          <Route exact path="/home/sacerdote" component={SacerdotePage} />
+          <Route exact path="/home/sacerdoteedit" component={SacerdotesEdit} />
           <Route exact path="/home/sacerdotenew" component={SacerdoteAdd} />
+          <Route exact path="/home/calendario" component={CalendarScreen} />
 
           <Route exact path="/home/celebraciones" component={CelebPage} />
-          <Route exact path="/home/celebracionesnew" component={CelebNewPage} />
 
-          <Route exact path="/home/1010" component={P1010Page} />
-          <Route exact path="/home/1010new" component={P1010PageAdd} />
-
-          <Route exact path="/home/docs" component={DocPage} />
-          <Route exact path="/home/docsnew" component={DocPageAdd} />
-
-          <Route exact path="/home/news" component={NewsPage} />
-          <Route exact path="/home/newsnew" component={NewsPageAdd} />
+          <Route exact path="/home/blog" component={BlogPage} />
+          <Route exact path="/home/blogs" component={BlogsPage} />
+          <Route exact path="/home/blognew" component={BlogPageAdd} />
+          <Route exact path="/home/blogedit" component={BlogPageEdit} />
+          <Route exact path="/home/blogview" component={BlogPageView} />
 
           <Redirect to="/home" />
         </Switch>

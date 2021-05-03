@@ -15,7 +15,8 @@ export const UsuariosAltaPage = () => {
   });
 
   return (
-    <div className="flexbox-container-row">
+    // <div className="flexbox-container-row">
+    <div className="flexbox-container">
       <div className="col-md-2">
         <NavbarLeft />
       </div>

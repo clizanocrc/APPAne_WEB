@@ -7,6 +7,14 @@ import {
   LimpiaMatrimonios,
   seleccionaMatrimonio,
   addMatrimonio,
+  updateMatrimonio,
+  deleteMatrimonio,
+  registraSacerdotes,
+  seleccionaSacerdote,
+  LimpiaSacerdotes,
+  addSacerdote,
+  updateSacerdote,
+  deleteSacerdote,
 } from "./actions/matrimoniosActions";
 import { initialState } from "./initialState/matrimoniosInitialState";
 
@@ -26,6 +34,7 @@ export const MatrimoniosProvider = ({ children }) => {
       );
       if (resp.ok) {
         registraMatrimonios(resp, dispatch);
+        registraSacerdotes(resp, dispatch);
       } else {
         LimpiaMatrimonios(dispatch);
         Swal.fire("error", resp.msg);
@@ -44,13 +53,39 @@ export const MatrimoniosProvider = ({ children }) => {
   };
 
   const agregaMatrimonio = (data) => {
-    console.log(data);
     addMatrimonio(data, dispatch);
   };
 
   const editarMatrimonio = (data) => {
-    console.log(data);
-    // addMatrimonio(data, dispatch);
+    updateMatrimonio(data, dispatch);
+  };
+
+  const eliminarMatrimonio = (data) => {
+    deleteMatrimonio(data, dispatch);
+  };
+
+  const selecSacerdote = (matrimonio) => {
+    seleccionaSacerdote(matrimonio, dispatch);
+  };
+
+  const purgaSacerdotes = () => {
+    LimpiaSacerdotes(dispatch);
+  };
+
+  const agregaSacerdote = (data) => {
+    addSacerdote(data, dispatch);
+  };
+
+  const editarSacerdote = (data) => {
+    updateSacerdote(data, dispatch);
+  };
+
+  const eliminarSacerdote = (data) => {
+    deleteSacerdote(data, dispatch);
+  };
+
+  const selecConyuge = (matrimonio) => {
+    seleccionaMatrimonio(matrimonio, dispatch);
   };
 
   return (
@@ -62,6 +97,13 @@ export const MatrimoniosProvider = ({ children }) => {
         selecMatrimonio,
         agregaMatrimonio,
         editarMatrimonio,
+        eliminarMatrimonio,
+        selecSacerdote,
+        purgaSacerdotes,
+        agregaSacerdote,
+        editarSacerdote,
+        eliminarSacerdote,
+        selecConyuge,
       }}
     >
       {children}

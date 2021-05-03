@@ -19,14 +19,16 @@ import { exitoFire } from "../../helpers/messagesUI";
 import { AppContext } from "../../context/AppContext";
 import { Divider } from "@material-ui/core";
 import { MatrimoniosContext } from "../../context/MatrimoniosContext";
+import { useHistory } from "react-router";
 
 export const MatrimoniosPageAdd = () => {
+  const history = useHistory();
   const { diocesis } = useContext(DiocesisContext);
   const { agregaMatrimonio } = useContext(MatrimoniosContext);
   const { showModalLoading, hideModalLoading } = useContext(AppContext);
   const diocesisDB = diocesis.diocesis;
 
-  const [formValues, handleInputChange, reset, setFormValues] = useForm(
+  const [formValues, onChange, reset, setFormValues] = useForm(
     initialFormMatrimonio
   );
 
@@ -35,9 +37,9 @@ export const MatrimoniosPageAdd = () => {
     showModalLoading();
     const resp = await matrimonioAdd(formValues);
     if (resp.ok) {
-      console.log();
       agregaMatrimonio(resp.data);
       reset();
+      history.push("/home/matrimonios");
       exitoFire("Registro creado...!");
     }
     hideModalLoading();
@@ -93,7 +95,6 @@ export const MatrimoniosPageAdd = () => {
       ? true
       : false;
   };
-
   return (
     <div>
       {/* Div principal */}
@@ -102,7 +103,7 @@ export const MatrimoniosPageAdd = () => {
         <div className="col-md-2">
           <NavbarLeft />
         </div>
-        <div>
+        <div style={{ height: "85vh", overflowY: "scroll" }}>
           <div>
             <span>
               <i
@@ -129,19 +130,19 @@ export const MatrimoniosPageAdd = () => {
             label={"Matrimonio*"}
             name={"nombrematrimonio"}
             value={formValues.nombrematrimonio}
-            callBack={handleInputChange}
+            callBack={onChange}
           />
           <TextControl
             label={"Teléfono"}
             name={"telefono"}
             value={formValues.telefono}
-            callBack={handleInputChange}
+            callBack={onChange}
           />
           <TextControl
             label={"Email"}
             name={"email"}
             value={formValues.email}
-            callBack={handleInputChange}
+            callBack={onChange}
           />
           <SelectDateddMM
             label={"F Matrimonio"}
@@ -153,14 +154,14 @@ export const MatrimoniosPageAdd = () => {
             label={"Activo"}
             name={"activo"}
             value={formValues.activo}
-            callBack={handleInputChange}
+            callBack={onChange}
           />
 
           <SelectItems
             label={"Diocesis*"}
             name={"diocesis"}
             value={formValues.diocesis}
-            callBack={handleInputChange}
+            callBack={onChange}
             data={diocesisDB}
           />
 
@@ -168,19 +169,19 @@ export const MatrimoniosPageAdd = () => {
             label={"Bloque"}
             name={"bloque"}
             value={formValues.bloque}
-            callBack={handleInputChange}
+            callBack={onChange}
           />
           <TextArea
             label={"Dirección"}
             name={"direccion"}
             value={formValues.direccion}
-            callBack={handleInputChange}
+            callBack={onChange}
           />
           <TextArea
             label={"Generalidades"}
             name={"generalidades"}
             value={formValues.generalidades}
-            callBack={handleInputChange}
+            callBack={onChange}
           />
           <div className="form-group mt-3">
             <button
@@ -208,7 +209,7 @@ export const MatrimoniosPageAdd = () => {
           <ConyugeFormAdd
             genero="F"
             formValues={formValues}
-            handleInputChange={handleInputChange}
+            onChange={onChange}
             reset={reset}
             // labelForm="Datos de la Esposa"
             handleDateChange={handleDateChangeEsposa}
@@ -231,7 +232,7 @@ export const MatrimoniosPageAdd = () => {
           <ConyugeFormAdd
             genero="M"
             formValues={formValues}
-            handleInputChange={handleInputChange}
+            onChange={onChange}
             reset={reset}
             // labelForm="Datos del Esposo"
             handleDateChange={handleDateChangeEsposo}

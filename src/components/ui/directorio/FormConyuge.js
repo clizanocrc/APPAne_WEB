@@ -2,6 +2,7 @@ import { Divider } from "@material-ui/core";
 import moment from "moment";
 import React, { useContext } from "react";
 import { MatrimoniosContext } from "../../../context/MatrimoniosContext";
+import { fechaDifCumple } from "../../../helpers/fechaDef";
 import { SelectDateddMMView, TextControlView } from "../atom/FormControls";
 
 export const FormConyuge = ({ genero }) => {
@@ -11,6 +12,7 @@ export const FormConyuge = ({ genero }) => {
     genero === "M"
       ? matrimonios.matrimonioSeleccionado.esposo
       : matrimonios.matrimonioSeleccionado.esposa;
+  const diffDate = fechaDifCumple(conyuge.fechaNacimiento);
 
   return (
     <div className="row">
@@ -27,10 +29,15 @@ export const FormConyuge = ({ genero }) => {
       <div className="col-md-8 mt-5">
         {/* <div className="mt-5"> */}
         <h3>
-          {genero === "M" ? "Esposo: " : "Esposa: "} {conyuge.nombre}{" "}
+          {conyuge.genero === "M" ? "Esposo: " : "Esposa: "} {conyuge.nombre}{" "}
           {conyuge.apellido}
         </h3>
         <Divider className="mt-3 mb-3" />
+
+        <h6 className="card-text mt-2">{diffDate.msg}</h6>
+
+        <Divider className="mt-3 mb-3" />
+        <TextControlView label={"Apellido"} value={conyuge.apellido} />
         <TextControlView label={"Teléfono"} value={conyuge.telefono} />
         <TextControlView label={"Email"} value={conyuge.email} />
         <SelectDateddMMView

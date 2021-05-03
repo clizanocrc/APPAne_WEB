@@ -1,6 +1,8 @@
 import moment from "moment";
 
-const now = moment().minutes(0).seconds(0).year(0);
+const now = moment().minutes(0).seconds(0);
+
+const nowPlus1 = now.clone().add(1, "hours");
 
 export const initialFormMatrimonio = {
   nombrematrimonio: "",
@@ -26,6 +28,37 @@ export const initialFormMatrimonio = {
   fechaNacimientoEsposa: now.toDate(),
   imagesEsposa: "",
 };
+
+export const initialFormSacerdotes = {
+  nombrematrimonio: "",
+  telefono: "",
+  email: "",
+  images: "",
+  diocesis: "",
+  bloque: "Primero",
+  activo: "1",
+  fechaMatrimonio: now.toDate(),
+  fechaOrdenacion: now.toDate(),
+  direccion: "",
+  generalidades: "Ninguna",
+};
+
+export const initEvent = {
+  title: "",
+  notes: "",
+  start: now.toDate(),
+  end: nowPlus1.toDate(),
+  // user: {},
+};
+
+export const initialFormBlog = {
+  titulo: "",
+  contenidocorto: "",
+  contenido: "",
+  images: "",
+  categoria: "6088340f7c8daa05f24056d4",
+};
+
 // export const initialFormMatrimonio = {
 //   nombrematrimonio: "Lizano",
 //   telefono: "24463218",

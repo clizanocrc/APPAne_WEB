@@ -1,4 +1,5 @@
 import React from "react";
+
 import moment from "moment";
 import "moment/locale/es";
 
@@ -9,24 +10,29 @@ import { DiocesisProvider } from "./context/DiocesisContext";
 import { AppRouter } from "./router/AppRouter";
 import { ConyuguesProvider } from "./context/ConyuguesContext";
 import { UsuariosProvider } from "./context/UsuariosContext";
-
+import { BlogsProvider } from "./context/BlogsContext";
+import { SocketProvider } from "./context/SocketContext";
 moment.locale("es");
 
 export const AppANE = () => {
   return (
-    <AppProvider>
-      <MatrimoniosProvider>
-        <DiocesisProvider>
-          <ConyuguesProvider>
+    <MatrimoniosProvider>
+      <DiocesisProvider>
+        <ConyuguesProvider>
+          <BlogsProvider>
             <UsuariosProvider>
-              <AuthProvider>
-                <AppRouter />
-              </AuthProvider>
+              <AppProvider>
+                <AuthProvider>
+                  <SocketProvider>
+                    <AppRouter />
+                  </SocketProvider>
+                </AuthProvider>
+              </AppProvider>
             </UsuariosProvider>
-          </ConyuguesProvider>
-        </DiocesisProvider>
-      </MatrimoniosProvider>
-    </AppProvider>
+          </BlogsProvider>
+        </ConyuguesProvider>
+      </DiocesisProvider>
+    </MatrimoniosProvider>
   );
 };
 

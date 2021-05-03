@@ -8,9 +8,12 @@ import { PublicRouter } from "./PublicRouter";
 import { PrivateRouter } from "./PrivateRouter";
 import { AuthVerify } from "../components/miselaneos/AuthVerify";
 import { UsuarioVerify } from "../components/miselaneos/UsuarioVerify";
+// import { ServerOffLine } from "../components/miselaneos/ServerOffLine";
+// import { SocketContext } from "../context/SocketContext";
 
 export const AppRouter = () => {
   const { auth, verificaToken } = useContext(AuthContext);
+  // const { onLine } = useContext(SocketContext);
 
   useEffect(() => {
     verificaToken();
@@ -23,6 +26,10 @@ export const AppRouter = () => {
   if (auth.rol === "NEW_USER_ROLE") {
     return <UsuarioVerify />;
   }
+
+  // if (!onLine) {
+  //   return <ServerOffLine />;
+  // }
 
   return (
     <Router>

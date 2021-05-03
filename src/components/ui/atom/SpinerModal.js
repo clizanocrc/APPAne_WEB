@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import Modal from "react-modal";
 import { AppContext } from "../../../context/AppContext";
+import "../../../css/modal.css";
 
 import { Spiner } from "./Spiner";
 
@@ -25,7 +26,7 @@ export const SpinerModal = () => {
       isOpen={state.isLoading}
       style={customStyles}
       closeTimeoutMS={200}
-      className="modal"
+      className="modal-spiner"
       overlayClassName="modal-fondo"
     >
       <div

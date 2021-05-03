@@ -1,7 +1,10 @@
-import { Divider } from "@material-ui/core";
+import { Divider, Link } from "@material-ui/core";
 import moment from "moment";
 import React, { useContext } from "react";
+import { useHistory } from "react-router";
+import { AuthContext } from "../../../context/AuthContext";
 import { MatrimoniosContext } from "../../../context/MatrimoniosContext";
+import { fechaDiffAniversario } from "../../../helpers/fechaDef";
 import {
   BloqueControlView,
   SelectDateddMMView,
@@ -12,6 +15,8 @@ import {
 
 export const FormMatrimonio = () => {
   const { matrimonios } = useContext(MatrimoniosContext);
+  const { auth } = useContext(AuthContext);
+  const history = useHistory();
   const {
     nombrematrimonio,
     telefono,
@@ -25,17 +30,32 @@ export const FormMatrimonio = () => {
     generalidades,
   } = matrimonios.matrimonioSeleccionado;
 
+  const diffDate = fechaDiffAniversario(fechaMatrimonio);
+
+  const handleClick = () => {
+    history.push("/home/matrimonioedit");
+  };
+
   return (
     <div className="row">
-      <div className="col-4 mt-5">
+      <div className="flexbox-container-col col-4 mt-5">
         <img
           src={images}
-          className="img-thumbnail animate__animated animate__fadeInLeft"
+          className="img-thumbnail mb-4 animate__animated animate__fadeInLeft"
           alt={nombrematrimonio}
         />
+        {(auth.rol === "SUPER_ADMIN_ROLE" || auth.rol === "ADMIN_ROLE") && (
+          <Link className="btn btn-warning ml-2" onClick={handleClick}>
+            Editar...
+          </Link>
+        )}
       </div>
       <div className="col-8 mt-5">
         <h3>Matrimonio: {nombrematrimonio}</h3>
+        <Divider className="mt-3 mb-3" />
+
+        <h6 className="card-text mt-2">{diffDate.msg}</h6>
+
         <Divider className="mt-3 mb-3" />
         <TextControlView label={"Teléfono"} value={telefono} />
         <TextControlView label={"Email"} value={email} />

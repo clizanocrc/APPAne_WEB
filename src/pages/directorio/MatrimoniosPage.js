@@ -12,7 +12,10 @@ export const MatrimoniosPage = () => {
         <NavbarLeft />
       </div>
 
-      <div className="col-md-10" style={{ overflowY: "scroll" }}>
+      <div
+        className="col-md-10"
+        style={{ height: "85vh", overflowY: "scroll" }}
+      >
         <div className="card-columns animate__animated animate__fadeIn mt-2">
           {matrimonios.matrimonios.map((matrimonio) => (
             <MatrimonioCard key={matrimonio.id} {...matrimonio} />

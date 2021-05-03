@@ -9,8 +9,10 @@ export const FileUploadContainer = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #e0fbba;
 `;
+// background-color: #e0fbba;
+// background-color: #fff3d6;
+// background-color: #eeeeee;
 
 export const FormField = styled.input`
   font-size: 18px;
@@ -24,7 +26,6 @@ export const FormField = styled.input`
   right: 0;
   bottom: 0;
   opacity: 0;
-
   &:focus {
     outline: none;
   }
@@ -44,14 +45,14 @@ export const DragDropText = styled.p`
   margin-top: 0;
   text-align: center;
 `;
-
+// font-size: 1rem;
 export const UploadFileBtn = styled.button`
   box-sizing: border-box;
   appearance: none;
   background-color: transparent;
   border: 2px solid #3498db;
   cursor: pointer;
-  font-size: 1rem;
+
   line-height: 1;
   padding: 1.1em 2.8em;
   text-align: center;
@@ -64,7 +65,7 @@ export const UploadFileBtn = styled.button`
   z-index: 1;
   transition: color 250ms ease-in-out;
   font-family: "Open Sans", sans-serif;
-  width: 45%;
+  width: 75%;
   display: flex;
   align-items: center;
   padding-right: 0;
@@ -79,7 +80,7 @@ export const UploadFileBtn = styled.button`
     transform: translateX(-50%);
     width: 0;
     height: 100%;
-    background: #3498db;
+    background: #eeeeee;
     z-index: -1;
     transition: width 250ms ease-in-out;
   }
@@ -108,7 +109,7 @@ export const UploadFileBtn = styled.button`
   }
 
   &:hover {
-    color: #fff;
+    color: #000000;
     outline: 0;
     background: transparent;
 
@@ -212,6 +213,6 @@ export const PreviewContainer = styled.section`
 
 export const ImagePreview = styled.img`
   border-radius: 6px;
-  width: 100%;
+  width: 150%;
   height: 100%;
 `;

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { ConyugeFormAdd } from "../../components/ConyugeFormAdd";
+import { useHistory } from "react-router";
 
 import { NavbarLeft } from "../../components/ui/NavbarLeft";
 import { DiocesisContext } from "../../context/DiocesisContext";
@@ -13,22 +14,32 @@ import {
   TextControl,
   BloqueControl,
 } from "../../components/ui/atom/FormControls";
-import { matrimonioEdit } from "../../controlers/matrimonios";
+import { matrimonioUpdate } from "../../controlers/matrimonios";
 // import { initialFormMatrimonio } from "../../context/initialState/formInitial";
 import { exitoFire } from "../../helpers/messagesUI";
 import { AppContext } from "../../context/AppContext";
 import { Divider } from "@material-ui/core";
 import { MatrimoniosContext } from "../../context/MatrimoniosContext";
 import moment from "moment";
+import { ConyuguesContext } from "../../context/ConyuguesContext";
 
 export const MatrimoniosPageEdit = () => {
   const { diocesis } = useContext(DiocesisContext);
-  const { matrimonios, editarMatrimonio } = useContext(MatrimoniosContext);
+  const history = useHistory();
+
+  const {
+    matrimonios,
+    editarMatrimonio,
+    eliminarMatrimonio,
+    selecMatrimonio,
+  } = useContext(MatrimoniosContext);
+
+  const { editarConyuge, eliminarConyuge } = useContext(ConyuguesContext);
+
   const { showModalLoading, hideModalLoading } = useContext(AppContext);
   const diocesisDB = diocesis.diocesis;
   const { matrimonioSeleccionado: matrimonio } = matrimonios;
   const { esposa, esposo } = matrimonio;
-
   const initialFormMatrimonio = {
     nombrematrimonio: matrimonio.nombrematrimonio,
     telefono: matrimonio.telefono,
@@ -40,23 +51,21 @@ export const MatrimoniosPageEdit = () => {
     fechaMatrimonio: moment(matrimonio.fechaMatrimonio).toDate(),
     direccion: matrimonio.direccion,
     generalidades: matrimonio.generalidades,
-
     nombreEsposo: esposo.nombre,
     apellidosEsposo: esposo.apellido,
     telefonoEsposo: esposo.telefono,
     emailEsposo: esposo.email,
     fechaNacimientoEsposo: moment(esposo.fechaNacimiento).toDate(),
     imagesEsposo: esposo.images,
-
     nombreEsposa: esposa.nombre,
-    telefonoEsposa: esposa.apellido,
-    apellidosEsposa: esposa.telefono,
+    telefonoEsposa: esposa.telefono,
+    apellidosEsposa: esposa.apellido,
     emailEsposa: esposa.email,
     fechaNacimientoEsposa: moment(esposa.fechaNacimiento).toDate(),
     imagesEsposa: esposa.images,
   };
 
-  const [formValues, handleInputChange, reset, setFormValues] = useForm(
+  const [formValues, onChange, reset, setFormValues] = useForm(
     initialFormMatrimonio
   );
 
@@ -66,13 +75,24 @@ export const MatrimoniosPageEdit = () => {
   const onSubmit = async (ev) => {
     ev.preventDefault();
     showModalLoading();
-    const resp = await matrimonioEdit(formValues);
+    const resp = await matrimonioUpdate(formValues, matrimonio);
+    console.log(resp.data);
     if (resp.ok) {
       editarMatrimonio(resp.data);
-      reset();
-      exitoFire("Registro actualizado...!");
+      selecMatrimonio(resp.data);
+      editarConyuge(resp.data.esposo);
+      editarConyuge(resp.data.esposa);
+      history.push("/home/matrimonio");
+      hideModalLoading();
+      exitoFire(resp.msg);
+    } else {
+      eliminarMatrimonio(resp.data);
+      eliminarConyuge(esposo);
+      eliminarConyuge(esposa);
+      history.push("/home/matrimonios");
+      hideModalLoading();
+      exitoFire(resp.msg);
     }
-    hideModalLoading();
   };
 
   const handleDateChange = (e) => {
@@ -125,11 +145,6 @@ export const MatrimoniosPageEdit = () => {
       ? true
       : false;
   };
-
-  // const todoOk = () => {
-  //   return true;
-  // };
-
   return (
     <div>
       {/* Div principal */}
@@ -169,24 +184,23 @@ export const MatrimoniosPageEdit = () => {
             // multiple
           />
           <Divider className="mb-3" />
-
           <TextControl
             label={"Matrimonio*"}
             name={"nombrematrimonio"}
             value={formValues.nombrematrimonio}
-            callBack={handleInputChange}
+            callBack={onChange}
           />
           <TextControl
             label={"Teléfono"}
             name={"telefono"}
             value={formValues.telefono}
-            callBack={handleInputChange}
+            callBack={onChange}
           />
           <TextControl
             label={"Email"}
             name={"email"}
             value={formValues.email}
-            callBack={handleInputChange}
+            callBack={onChange}
           />
           <SelectDateddMM
             label={"F Matrimonio"}
@@ -198,34 +212,32 @@ export const MatrimoniosPageEdit = () => {
             label={"Activo"}
             name={"activo"}
             value={formValues.activo}
-            callBack={handleInputChange}
+            callBack={onChange}
           />
-
           <SelectItems
             label={"Diocesis*"}
             name={"diocesis"}
             value={formValues.diocesis}
-            callBack={handleInputChange}
+            callBack={onChange}
             data={diocesisDB}
           />
-
           <BloqueControl
             label={"Bloque"}
             name={"bloque"}
             value={formValues.bloque}
-            callBack={handleInputChange}
+            callBack={onChange}
           />
           <TextArea
             label={"Dirección"}
             name={"direccion"}
             value={formValues.direccion}
-            callBack={handleInputChange}
+            callBack={onChange}
           />
           <TextArea
             label={"Generalidades"}
             name={"generalidades"}
             value={formValues.generalidades}
-            callBack={handleInputChange}
+            callBack={onChange}
           />
           <div className="form-group mt-3">
             <button
@@ -241,7 +253,6 @@ export const MatrimoniosPageEdit = () => {
         <div>
           <div>
             <i className="fa fa-female mr-3" style={{ color: "green" }}></i>
-
             <span>Datos de la Esposa</span>
           </div>
           <div>
@@ -250,7 +261,7 @@ export const MatrimoniosPageEdit = () => {
           <ConyugeFormAdd
             genero="F"
             formValues={formValues}
-            handleInputChange={handleInputChange}
+            onChange={onChange}
             reset={reset}
             // labelForm="Datos de la Esposa"
             handleDateChange={handleDateChangeEsposa}
@@ -264,7 +275,6 @@ export const MatrimoniosPageEdit = () => {
               className="fa fa-male bigicon mr-3"
               style={{ color: "green" }}
             ></i>
-
             <span>Datos del Esposo</span>
           </div>
           <div>
@@ -273,9 +283,8 @@ export const MatrimoniosPageEdit = () => {
           <ConyugeFormAdd
             genero="M"
             formValues={formValues}
-            handleInputChange={handleInputChange}
+            onChange={onChange}
             reset={reset}
-            // labelForm="Datos del Esposo"
             handleDateChange={handleDateChangeEsposo}
             updateFilesCb={updateFilesCbEsposo}
           />

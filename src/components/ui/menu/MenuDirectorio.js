@@ -10,19 +10,21 @@ export const MenuDirectorio = () => {
     case "SUPER_ADMIN_ROLE":
     case "ADMIN_ROLE":
       return (
-        <div className="navbar-nav">
+        // <div className="navbar-nav">
+        <div className="navbar-collapse">
           <MenuItem route="/home/directorio" caption="Directorio" />
           <Divider />
           <MenuItem
             route="/home/matrimonionew"
-            caption="Crear Matrimonio"
+            caption="+ Matrimonio"
             icon="fa fa-address-card"
           />
           <MenuItem
             route="/home/sacerdotenew"
-            caption="Crear Sacerdote"
+            caption="+ Sacerdote"
             icon="fa fa-address-card"
           />
+
           <Divider />
           <MenuItem
             route="/home/matrimonios"
@@ -33,6 +35,18 @@ export const MenuDirectorio = () => {
             route="/home/sacerdotes"
             caption="Sacerdotes"
             icon="fa fa-male"
+          />
+          <Divider />
+
+          <MenuItem
+            route="/home/calendario"
+            caption="Calendario"
+            icon="fa fa-calendar-alt"
+          />
+          <MenuItem
+            route="/home/celebraciones"
+            caption="Celebraciones"
+            icon="fa fa-calendar-alt"
           />
         </div>
       );
@@ -50,6 +64,18 @@ export const MenuDirectorio = () => {
             route="/home/sacerdotes"
             caption="Sacerdotes"
             icon="fa fa-male"
+          />
+          <Divider />
+
+          <MenuItem
+            route="/home/calendario"
+            caption="Calendario"
+            icon="fa fa-calendar-alt"
+          />
+          <MenuItem
+            route="/home/celebraciones"
+            caption="Celebraciones"
+            icon="fa fa-calendar-alt"
           />
         </div>
       );

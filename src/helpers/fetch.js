@@ -1,9 +1,26 @@
 const baseUrl = process.env.REACT_APP_API_URL;
+const timeTimeOut = 10000; //Timeout para el fetch
 
 export const fetchSinToken = async (endpoint, data, method = "GET") => {
+  //Controler del TimeOut a 10 segundos
+  // console.log("Peticion, fetchSinToken, con timeout a", timeTimeOut);
+  const controller = new AbortController();
+  //Función que controla el tiempo transcurrido
+  const killerTime = setTimeout(() => {
+    controller.abort();
+    return {
+      ok: false,
+      msg: "Se agotó el tiempo, servidor no me resoponde, reintente más tarde",
+    };
+  }, timeTimeOut);
+
   const url = `${baseUrl}/${endpoint}`;
   if (method === "GET") {
-    const resp = await fetch(url);
+    const resp = await fetch(url, {
+      //Controler TimeOut
+      signal: controller.signal,
+    });
+    clearTimeout(killerTime);
     return await resp.json();
   } else {
     const resp = await fetch(url, {
@@ -12,22 +29,38 @@ export const fetchSinToken = async (endpoint, data, method = "GET") => {
         "Content-type": "application/json",
       },
       body: JSON.stringify(data),
+      signal: controller.signal,
     });
+    clearTimeout(killerTime);
     return await resp.json();
   }
 };
 
 export const fetchConToken = async (endpoint, data, method = "GET") => {
+  //Controler del TimeOut a 10 segundos
+  // console.log("Peticion, fetchConToken, con timeout a", timeTimeOut);
+  const controller = new AbortController();
+  //Función que controla el tiempo transcurrido
+  const killerTime = setTimeout(() => {
+    controller.abort();
+    return {
+      ok: false,
+      msg: "Se agotó el tiempo, servidor no me resoponde, reintente más tarde",
+    };
+  }, timeTimeOut);
+
   const url = `${baseUrl}/${endpoint}`;
   const token = localStorage.getItem("token") || undefined;
-  // console.log("fetchConToken URL", url, "Metodo:", method, token);
-
   if (method === "GET") {
     const resp = await fetch(url, {
       headers: {
         "x-token": token,
       },
+      //Controler TimeOut
+      signal: controller.signal,
     });
+    //Limpiar el TimeOut
+    clearTimeout(killerTime);
     return await resp.json();
   } else {
     const resp = await fetch(url, {
@@ -37,12 +70,28 @@ export const fetchConToken = async (endpoint, data, method = "GET") => {
         "x-token": token,
       },
       body: JSON.stringify(data),
+      //Controler TimeOut
+      signal: controller.signal,
     });
+    //Limpiar el TimeOut
+    clearTimeout(killerTime);
     return await resp.json();
   }
 };
 
 export const fetchImgConToken = async (endpoint, data, method = "GET") => {
+  //Controler del TimeOut a 10 segundos
+  // console.log("Peticion, fetchImgConToken, con timeout a", timeTimeOut);
+  const controller = new AbortController();
+  //Función que controla el tiempo transcurrido
+  const killerTime = setTimeout(() => {
+    controller.abort();
+    return {
+      ok: false,
+      msg: "Se agotó el tiempo, servidor no me resoponde, reintente más tarde",
+    };
+  }, timeTimeOut);
+
   const url = `${baseUrl}/${endpoint}`;
   const token = localStorage.getItem("token") || undefined;
 
@@ -51,7 +100,9 @@ export const fetchImgConToken = async (endpoint, data, method = "GET") => {
       headers: {
         "x-token": token,
       },
+      signal: controller.signal,
     });
+    clearTimeout(killerTime);
     return await resp.json();
   } else {
     var formData = new FormData();
@@ -63,7 +114,9 @@ export const fetchImgConToken = async (endpoint, data, method = "GET") => {
         // "Content-type": "application/json",
         "x-token": token,
       },
+      signal: controller.signal,
     });
+    clearTimeout(killerTime);
     return await resp.json();
   }
 };

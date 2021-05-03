@@ -11,20 +11,17 @@ import { exitoFire } from "../../helpers/messagesUI";
 import { useForm } from "../../hooks/useForm";
 
 export const UsuariosForm = ({ usuario }) => {
-  // console.log(usuario);
   const { auth } = useContext(AuthContext);
   const { showModalLoading, hideModalLoading } = useContext(AppContext);
-  const [formValues, handleInputChange] = useForm(usuario);
+  const [formValues, onChange] = useForm(usuario);
   const onSubmit = async (e) => {
     e.preventDefault();
     showModalLoading();
     if (await aupdateUsuario(formValues)) {
-      console.log("Actualizado");
       exitoFire("Usuario actualizado...!");
     }
     hideModalLoading();
   };
-  // console.log(formValues);
 
   const active =
     auth.rol === "ADMIN_ROLE" && formValues.rol === "SUPER_ADMIN_ROLE"
@@ -38,27 +35,27 @@ export const UsuariosForm = ({ usuario }) => {
           label="Nombre"
           name="nombre"
           value={formValues.nombre}
-          callBack={handleInputChange}
+          callBack={onChange}
           activado={active}
         />
         <TextControlCol
           label="Correo"
           name="correo"
           value={formValues.correo}
-          callBack={handleInputChange}
+          callBack={onChange}
           activado={active}
         />
         <RoleControlCol
           name="rol"
           value={formValues.rol}
-          callBack={handleInputChange}
+          callBack={onChange}
           activado={auth.rol === "SUPER_ADMIN_ROLE" ? true : false}
         />
 
         <SiNoControlCol
           name="estado"
           value={formValues.estado}
-          callBack={handleInputChange}
+          callBack={onChange}
           activado={active}
         />
         <button

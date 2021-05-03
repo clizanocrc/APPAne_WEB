@@ -4,13 +4,10 @@ import { Divider } from "@material-ui/core";
 import FileUpload from "../helpers/fileUpload";
 import { SelectDateddMM, TextControl } from "./ui/atom/FormControls";
 
-const imgDefecto =
-  "https://res.cloudinary.com/dyor179ps/image/upload/v1617833009/APPAne/matrimonios/directorio-0403dc9b-3312-46ca-926d-c70f6874eded_zyj9bq.jpg";
-
 export const ConyugeFormAdd = ({
   genero,
   formValues,
-  handleInputChange,
+  onChange,
   labelForm,
   handleDateChange,
   updateFilesCb,
@@ -20,30 +17,33 @@ export const ConyugeFormAdd = ({
       <Divider className="mt-3" />
       <label className="control-label mt-2">{labelForm}</label>
       <div>
-        {genero === "M" ? (
-          <img
-            src={!formValues.images ? imgDefecto : formValues.imagesEsposo}
-            className="card-img"
-            alt={formValues.nombrematrimonio}
-            width="200"
-            height="250"
-            style={{
-              objectFit: "contain",
-            }}
-          />
-        ) : (
-          <img
-            src={!formValues.images ? imgDefecto : formValues.imagesEsposa}
-            className="card-img"
-            alt={formValues.nombrematrimonio}
-            width="200"
-            height="250"
-            style={{
-              objectFit: "contain",
-            }}
-          />
-        )}
-
+        {genero === "M"
+          ? formValues.imagesEsposo && (
+              <img
+                src={formValues.imagesEsposo}
+                className="card-img"
+                // alt={formValues.nombrematrimonio}
+                alt={"No hay Imagen"}
+                width="200"
+                height="250"
+                style={{
+                  objectFit: "contain",
+                }}
+              />
+            )
+          : formValues.imagesEsposa && (
+              <img
+                src={formValues.imagesEsposa}
+                className="card-img"
+                // alt={formValues.nombrematrimonio}
+                alt={"No hay Imagen"}
+                width="200"
+                height="250"
+                style={{
+                  objectFit: "contain",
+                }}
+              />
+            )}
         <FileUpload
           updateFilesCb={updateFilesCb}
           accept=".jpg,.png,.jpeg"
@@ -62,7 +62,7 @@ export const ConyugeFormAdd = ({
                   ? formValues.nombreEsposo
                   : formValues.nombreEsposa
               }
-              callBack={handleInputChange}
+              callBack={onChange}
             />
             <TextControl
               label={"Apellidos"}
@@ -72,7 +72,7 @@ export const ConyugeFormAdd = ({
                   ? formValues.apellidosEsposo
                   : formValues.apellidosEsposa
               }
-              callBack={handleInputChange}
+              callBack={onChange}
             />
             <TextControl
               label={"Telefono"}
@@ -82,7 +82,7 @@ export const ConyugeFormAdd = ({
                   ? formValues.telefonoEsposo
                   : formValues.telefonoEsposa
               }
-              callBack={handleInputChange}
+              callBack={onChange}
             />
             <TextControl
               label={"Email"}
@@ -90,7 +90,7 @@ export const ConyugeFormAdd = ({
               value={
                 genero === "M" ? formValues.emailEsposo : formValues.emailEsposa
               }
-              callBack={handleInputChange}
+              callBack={onChange}
             />
             <SelectDateddMM
               label={"F Nacimiento"}

@@ -1,12 +1,12 @@
+import { Divider, Link } from "@material-ui/core";
 import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Link } from "react-router-dom";
 import logo from "../../../assets/emm.png";
 
 export const TextControl = ({ label, name, value, callBack }) => {
   return (
-    <div className="input-group mb-2" style={{ alignItems: "center" }}>
+    <div className="input-group" style={{ alignItems: "center" }}>
       <label className="mr-2 col-md-4" style={{ textAlign: "end" }}>
         {label}:
       </label>
@@ -22,47 +22,63 @@ export const TextControl = ({ label, name, value, callBack }) => {
   );
 };
 
-export const Search = ({ label, name, value, callBack, onEnd }) => {
+export const TextControlPass = ({ label, name, value, callBack }) => {
   return (
-    <div className="input-group mb-2 ml-5" style={{ alignItems: "center" }}>
-      <Link onClick={onEnd} to={""}>
-        <i className="fa fa-search bigicon mr-3" style={{ color: "gray" }}></i>
-      </Link>
+    <div className="input-group" style={{ alignItems: "center" }}>
+      <label className="mr-2 col-md-4" style={{ textAlign: "end" }}>
+        {label}:
+      </label>
       <input
-        type="text"
+        type="password"
         className="form-control mr-2 col-md-12"
         name={name}
         placeholder={label}
         value={value}
         onChange={callBack}
-        style={{ backgroundColor: "lightgray" }}
       />
     </div>
   );
 };
 
-export const SiNoControl = ({ label, name, value, callBack }) => {
+export const TextControlView = ({ label, value }) => {
   return (
-    <div className="input-group mb-2" style={{ alignItems: "center" }}>
-      <label className="mr-2 col-md-4" style={{ textAlign: "end" }}>
-        {label}
+    <div className="input-group col-md-12" style={{ alignItems: "center" }}>
+      <label className="mr-2  col-md-2" style={{ textAlign: "end" }}>
+        {label}:
       </label>
-      <select
-        className="form-control col-md-2"
-        name={name}
+      <input
+        type="text"
+        className="form-control mr-2 col-md-8"
+        // placeholder={label}
         value={value}
-        onChange={callBack}
-      >
-        <option value="1">SI</option>
-        <option value="0">NO</option>
-      </select>
+        disabled
+      />
     </div>
+  );
+};
+export const TextControlCol = ({
+  label,
+  name,
+  value,
+  callBack,
+  activado = true,
+}) => {
+  return (
+    <input
+      type="text"
+      className="form-control"
+      name={name}
+      placeholder={label}
+      value={value}
+      onChange={callBack}
+      disabled={!activado}
+    />
   );
 };
 
 export const BloqueControl = ({ label, name, value, callBack }) => {
   return (
-    <div className="input-group mb-2" style={{ alignItems: "center" }}>
+    <div className="input-group" style={{ alignItems: "center" }}>
       <label className="mr-2 col-md-4" style={{ textAlign: "end" }}>
         {label}
       </label>
@@ -83,7 +99,7 @@ export const BloqueControl = ({ label, name, value, callBack }) => {
 
 export const RoleControl = ({ label, name, value, callBack }) => {
   return (
-    <div className="input-group mb-2" style={{ alignItems: "center" }}>
+    <div className="input-group" style={{ alignItems: "center" }}>
       <label className="mr-2 col-md-4" style={{ textAlign: "end" }}>
         {label}
       </label>
@@ -104,7 +120,7 @@ export const RoleControl = ({ label, name, value, callBack }) => {
 
 export const SelectItems = ({ label, name, value, callBack, data }) => {
   return (
-    <div className="input-group mb-2" style={{ alignItems: "center" }}>
+    <div className="input-group" style={{ alignItems: "center" }}>
       <label className="mr-2 col-md-4" style={{ textAlign: "end" }}>
         {label}
       </label>
@@ -127,7 +143,7 @@ export const SelectItems = ({ label, name, value, callBack, data }) => {
 
 export const SelectDateddMM = ({ label, name, value, callBack }) => {
   return (
-    <div className="input-group mb-2" style={{ alignItems: "center" }}>
+    <div className="input-group" style={{ alignItems: "center" }}>
       <label className="mr-2 col-md-4" style={{ textAlign: "end" }}>
         {label}
       </label>
@@ -165,12 +181,26 @@ export const TextArea = ({ label, name, value, callBack }) => {
   );
 };
 
+export const TextAreaNoIcon = ({ label, name, value, callBack }) => {
+  return (
+    <div>
+      <div>
+        <textarea
+          className="form-control"
+          name={name}
+          placeholder={label}
+          rows="2"
+          value={value}
+          onChange={callBack}
+        ></textarea>
+      </div>
+    </div>
+  );
+};
+
 export const SelectItemsView = ({ label, value, data }) => {
   return (
-    <div
-      className="input-group mb-2 col-md-12"
-      style={{ alignItems: "center" }}
-    >
+    <div className="input-group col-md-12" style={{ alignItems: "center" }}>
       <label className="mr-2  col-md-2" style={{ textAlign: "end" }}>
         {label}
       </label>
@@ -185,32 +215,9 @@ export const SelectItemsView = ({ label, value, data }) => {
   );
 };
 
-export const TextControlView = ({ label, value }) => {
-  return (
-    <div
-      className="input-group mb-2 col-md-12"
-      style={{ alignItems: "center" }}
-    >
-      <label className="mr-2  col-md-2" style={{ textAlign: "end" }}>
-        {label}:
-      </label>
-      <input
-        type="text"
-        className="form-control mr-2 col-md-8"
-        // placeholder={label}
-        value={value}
-        disabled
-      />
-    </div>
-  );
-};
-
 export const BloqueControlView = ({ label, value }) => {
   return (
-    <div
-      className="input-group mb-2 col-md-12"
-      style={{ alignItems: "center" }}
-    >
+    <div className="input-group col-md-12" style={{ alignItems: "center" }}>
       <label className="mr-2 col-md-2" style={{ textAlign: "end" }}>
         {label}
       </label>
@@ -224,29 +231,9 @@ export const BloqueControlView = ({ label, value }) => {
   );
 };
 
-export const SiNoControlView = ({ label, value }) => {
-  return (
-    <div
-      className="input-group mb-2 col-md-12"
-      style={{ alignItems: "center" }}
-    >
-      <label className="mr-2 col-md-2" style={{ textAlign: "end" }}>
-        {label}
-      </label>
-      <select className="form-control col-md-2" value={value} disabled>
-        <option value="1">SI</option>
-        <option value="0">NO</option>
-      </select>
-    </div>
-  );
-};
-
 export const SelectDateddMMView = ({ label, value }) => {
   return (
-    <div
-      className="input-group mb-2 col-md-12"
-      style={{ alignItems: "center" }}
-    >
+    <div className="input-group col-md-12" style={{ alignItems: "center" }}>
       <label className="mr-2 col-md-2" style={{ textAlign: "end" }}>
         {label}
       </label>
@@ -286,40 +273,6 @@ export const LogoEmm = () => {
   return <img src={logo} alt="Logo" width="100" height="120" />;
 };
 
-export const TextControlCol = ({
-  label,
-  name,
-  value,
-  callBack,
-  activado = true,
-}) => {
-  return (
-    <input
-      type="text"
-      className="form-control"
-      name={name}
-      placeholder={label}
-      value={value}
-      onChange={callBack}
-      disabled={!activado}
-    />
-  );
-};
-export const SiNoControlCol = ({ name, value, callBack, activado = true }) => {
-  return (
-    <select
-      className="form-control"
-      name={name}
-      value={value}
-      onChange={callBack}
-      disabled={!activado}
-    >
-      <option value={true}>SI</option>
-      <option value={false}>NO</option>
-    </select>
-  );
-};
-
 export const RoleControlCol = ({ name, value, callBack, activado = true }) => {
   return (
     <select
@@ -348,5 +301,65 @@ export const RoleControlColAlta = ({ name, value, callBack }) => {
       <option value="USER_ROLE">Usuario</option>
       <option value="NEW_USER_ROLE">Nuevo Usuario</option>
     </select>
+  );
+};
+
+export const SiNoControl = ({ label, name, value, callBack }) => {
+  return (
+    <div className="input-group" style={{ alignItems: "center" }}>
+      <label className="mr-2 col-md-4" style={{ textAlign: "end" }}>
+        {label}
+      </label>
+      <select
+        className="form-control col-md-3"
+        name={name}
+        value={value}
+        onChange={callBack}
+      >
+        <option value={true}>SI</option>
+        <option value={false}>NO</option>
+      </select>
+    </div>
+  );
+};
+
+export const SiNoControlView = ({ label, value }) => {
+  return (
+    <div className="input-group col-md-12" style={{ alignItems: "center" }}>
+      <label className="mr-2 col-md-2" style={{ textAlign: "end" }}>
+        {label}
+      </label>
+      <select className="form-control col-md-2" value={value} disabled>
+        <option value={true}>SI</option>
+        <option value={false}>NO</option>
+      </select>
+    </div>
+  );
+};
+
+export const SiNoControlCol = ({ name, value, callBack, activado = true }) => {
+  return (
+    <select
+      className="form-control"
+      name={name}
+      value={value}
+      onChange={callBack}
+      disabled={!activado}
+    >
+      <option value={true}>SI</option>
+      <option value={false}>NO</option>
+    </select>
+  );
+};
+
+export const ExternalLink = ({ url, img, label }) => {
+  return (
+    <>
+      <Link className="divrow" target="_blank" href={url}>
+        <img alt={label} src={img} className="imgIco ml-2 mt-2" />
+        <h6 className="ml-2">{label}</h6>
+      </Link>
+      <Divider />
+    </>
   );
 };

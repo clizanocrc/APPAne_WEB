@@ -13,3 +13,10 @@ export const matrimoniosXDiocesis = ({ diocesis }, { matrimonios }) => {
   }
   return diocesisContador;
 };
+
+export const comentariosAvg = (id, comentarios = []) => {
+  const comentariosBlog = comentarios.filter(
+    (coment) => coment.blogentrada === id
+  );
+  return comentariosBlog.length;
+};

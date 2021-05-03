@@ -6,11 +6,13 @@ import { MenuItem } from "../atom/MenuItem";
 
 export const MenuParametros = ({ etiquetaHome }) => {
   const { auth } = useContext(AuthContext);
+
   switch (auth.rol) {
     case "SUPER_ADMIN_ROLE":
     case "ADMIN_ROLE":
       return (
-        <div className="navbar-nav">
+        // <div className="navbar-nav">
+        <div className="navbar-collapse">
           <MenuItem route="/home/admin" caption={etiquetaHome} />
 
           <Divider />
