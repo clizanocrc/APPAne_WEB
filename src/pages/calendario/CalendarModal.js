@@ -150,82 +150,86 @@ export const CalendarModal = () => {
       className="modal"
       overlayClassName="modal-fondo"
     >
-      <div style={{ backgroundColor: "#EEEEEE", borderRadius: 5 }}>
-        <h1 className="ml-2">{EtiquetaTitulo()}</h1>
-      </div>
-      <hr />
-      <form className="container" onSubmit={handleSubmitForm}>
-        <div className="form-group">
-          <label>Fecha y hora inicio</label>
-          <DateTimePicker
-            onChange={handleStartDateChange}
-            value={start}
-            className="form-control"
-          />
+      <div
+        style={{ height: "70vh", overflowY: "scroll", alignItems: "center" }}
+      >
+        <div style={{ backgroundColor: "#EEEEEE", borderRadius: 5 }}>
+          <h1 className="ml-2">{EtiquetaTitulo()}</h1>
         </div>
-
-        <div className="form-group">
-          <label>Fecha y hora fin</label>
-          <DateTimePicker
-            onChange={handleEndDateChange}
-            value={end}
-            minDate={start}
-            className="form-control"
-          />
-        </div>
-
         <hr />
-        <div className="form-group">
-          <label>Titulo y notas</label>
-          <input
-            type="text"
-            className={`form-control ${!titleValid && "is-invalid"}`}
-            placeholder="Título del evento"
-            name="title"
-            autoComplete="off"
-            value={title}
-            onChange={onChange}
-          />
-          <small id="emailHelp" className="form-text text-muted">
-            Una descripción corta
-          </small>
-        </div>
+        <form className="container" onSubmit={handleSubmitForm}>
+          <div className="form-group">
+            <label>Fecha y hora inicio</label>
+            <DateTimePicker
+              onChange={handleStartDateChange}
+              value={start}
+              className="form-control"
+            />
+          </div>
 
-        <div className="form-group">
-          <textarea
-            type="text"
-            className="form-control"
-            placeholder="Notas"
-            rows="5"
-            name="notes"
-            value={notes}
-            onChange={onChange}
-          ></textarea>
-          <small id="emailHelp" className="form-text text-muted">
-            Información adicional
-          </small>
-        </div>
-        {!enabledButtons() && (
-          <>
-            <button
-              disabled={enabledButtons()}
-              type="submit"
-              className="btn btn-outline-primary btn-block"
-            >
-              <i className="far fa-save"></i>
-              <span> Guardar</span>
-            </button>
-            <button
-              onClick={handleDelete}
-              disabled={enabledButtons()}
-              className="btn btn-outline-danger btn-block"
-            >
-              <i className="far fa-trash-alt"></i>
-              <span> Eliminar</span>
-            </button>
-          </>
-        )}
-      </form>
+          <div className="form-group">
+            <label>Fecha y hora fin</label>
+            <DateTimePicker
+              onChange={handleEndDateChange}
+              value={end}
+              minDate={start}
+              className="form-control"
+            />
+          </div>
+
+          <hr />
+          <div className="form-group">
+            <label>Titulo y notas</label>
+            <input
+              type="text"
+              className={`form-control ${!titleValid && "is-invalid"}`}
+              placeholder="Título del evento"
+              name="title"
+              autoComplete="off"
+              value={title}
+              onChange={onChange}
+            />
+            <small id="emailHelp" className="form-text text-muted">
+              Una descripción corta
+            </small>
+          </div>
+
+          <div className="form-group">
+            <textarea
+              type="text"
+              className="form-control"
+              placeholder="Notas"
+              rows="5"
+              name="notes"
+              value={notes}
+              onChange={onChange}
+            ></textarea>
+            <small id="emailHelp" className="form-text text-muted">
+              Información adicional
+            </small>
+          </div>
+          {!enabledButtons() && (
+            <>
+              <button
+                disabled={enabledButtons()}
+                type="submit"
+                className="btn btn-outline-primary btn-block"
+              >
+                <i className="far fa-save"></i>
+                <span> Guardar</span>
+              </button>
+              <button
+                onClick={handleDelete}
+                disabled={enabledButtons()}
+                className="btn btn-outline-danger btn-block"
+              >
+                <i className="far fa-trash-alt"></i>
+                <span> Eliminar</span>
+              </button>
+            </>
+          )}
+        </form>
+      </div>
     </Modal>
   );
 };

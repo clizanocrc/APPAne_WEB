@@ -59,35 +59,36 @@ export const BlogComentariosModal = () => {
       overlayClassName="modal-fondo"
     >
       <div
-        className="input-group"
-        style={{
-          flexDirection: "row",
-          alignContent: "flex-start",
-          alignItems: "center",
-        }}
+        style={{ height: "73vh", overflowY: "scroll", alignItems: "center" }}
       >
-        <div>
-          <h5 className="ml-2 mr-2">Comentarios</h5>
+        <div
+          className="input-group"
+          style={{
+            flexDirection: "row",
+            alignContent: "flex-start",
+            alignItems: "center",
+          }}
+        >
+          <div>
+            <h5 className="ml-2 mr-2">Comentarios</h5>
+          </div>
+          <div className="col-md-12">
+            <TextAreaNoIcon
+              label={"Comentar"}
+              name={"comentario"}
+              value={formValues.comentario}
+              callBack={onChange}
+            />
+            <button className="btn btn-outline" onClick={handleSave}>
+              <i className="fa fa-save" /> Guardar Comentario
+            </button>
+          </div>
         </div>
-        <div className="col-md-12">
-          <TextAreaNoIcon
-            label={"Comentar"}
-            name={"comentario"}
-            value={formValues.comentario}
-            callBack={onChange}
-          />
-          <button className="btn btn-outline" onClick={handleSave}>
-            <i className="fa fa-save" /> Guardar Comentario
-          </button>
-        </div>
-      </div>
-      <div
-        className="container"
-        style={{ height: "70vh", overflowY: "scroll", alignItems: "center" }}
-      >
-        <hr />
         <div className="container">
-          <BlogComentarios id={blogs.blogSeleccionado.id} />
+          <hr />
+          <div className="container">
+            <BlogComentarios id={blogs.blogSeleccionado.id} />
+          </div>
         </div>
       </div>
     </Modal>

@@ -42,13 +42,14 @@ export const BlogPageView = () => {
       hideModalLoading();
     }
   };
-
   return (
     <div className="flexbox-container">
       <div className="col-md-2">
         <NavbarLeft />
         <BlogButtons blog={blog} comentarios={comentarios} />
-        {(auth.rol === "SUPER_ADMIN_ROLE" || auth.rol === "ADMIN_ROLE") && (
+        {(auth.rol === "SUPER_ADMIN_ROLE" ||
+          auth.rol === "ADMIN_ROLE" ||
+          auth.uid === blog.usuario._id) && (
           <>
             <button className="btn btn-warning ml-2" onClick={handleEditClick}>
               Editar...

@@ -12,6 +12,8 @@
 
 //Ojo con estos de aqui para abajo
 
-//TODO: Mostar las categorias de los blogs en los mismos.
+//TODO: Mostar la informacion del SinpeMovil en algún lugar
 
-//TODO: Mostrar una opcion de menu para los blogs del tipo documentos
+//TODO: Dashboard de administracion
+
+//TODO: En la Pantalla principal del Blog pindicar las instruicciones de como crear un blog, puede ser una imagen insertada

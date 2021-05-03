@@ -56,7 +56,7 @@ export const initialFormBlog = {
   contenidocorto: "",
   contenido: "",
   images: "",
-  categoria: "",
+  categoria: "60900be736311057d409d00d",
 };
 
 // export const initialFormMatrimonio = {

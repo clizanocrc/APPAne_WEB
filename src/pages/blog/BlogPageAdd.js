@@ -14,15 +14,16 @@ import { BlogsContext } from "../../context/BlogsContext";
 import { exitoFire } from "../../helpers/messagesUI";
 import { AppContext } from "../../context/AppContext";
 import { blogCrea } from "../../controlers/blogs";
+import { AuthContext } from "../../context/AuthContext";
 
 export const BlogPageAdd = () => {
   const history = useHistory();
   const { blogs, cargaBlogs } = useContext(BlogsContext);
+  const { auth } = useContext(AuthContext);
+
   const { categorias } = blogs;
   const { showModalLoading, hideModalLoading } = useContext(AppContext);
   const [formValues, onChange, reset, setFormValues] = useForm(initialFormBlog);
-
-  // console.log(categorias);
 
   const updateFilesCb = (e) => {
     setFormValues({
@@ -92,13 +93,15 @@ export const BlogPageAdd = () => {
           value={formValues.titulo}
           callBack={onChange}
         />
-        <SelectItemsCatBlog
-          label={"Categoría"}
-          name={"categoria"}
-          value={formValues.categoria}
-          callBack={onChange}
-          data={categorias}
-        />
+        {auth.rol !== "USER_ROLE" && (
+          <SelectItemsCatBlog
+            label={"Categoría"}
+            name={"categoria"}
+            value={formValues.categoria}
+            callBack={onChange}
+            data={categorias}
+          />
+        )}
         <TextArea
           label={"Descripción Corta*"}
           name={"contenidocorto"}

@@ -14,9 +14,12 @@ import { exitoFire } from "../../helpers/messagesUI";
 import { AppContext } from "../../context/AppContext";
 import { blogUpdate } from "../../controlers/blogs";
 import { ImgBlog } from "../../components/blog/AutorPubli";
+import { AuthContext } from "../../context/AuthContext";
 
 export const BlogPageEdit = () => {
   const history = useHistory();
+  const { auth } = useContext(AuthContext);
+
   const { cargaBlogs, blogs } = useContext(BlogsContext);
   const { categorias } = blogs;
   const { showModalLoading, hideModalLoading } = useContext(AppContext);
@@ -99,13 +102,15 @@ export const BlogPageEdit = () => {
           value={formValues.titulo}
           callBack={onChange}
         />
-        <SelectItemsCatBlog
-          label={"Categoría"}
-          name={"categoria"}
-          value={formValues.categoria}
-          callBack={onChange}
-          data={categorias}
-        />
+        {auth.rol !== "USER_ROLE" && (
+          <SelectItemsCatBlog
+            label={"Categoría"}
+            name={"categoria"}
+            value={formValues.categoria}
+            callBack={onChange}
+            data={categorias}
+          />
+        )}
         <ImgBlog
           image={formValues.images}
           alt={formValues.titulo}

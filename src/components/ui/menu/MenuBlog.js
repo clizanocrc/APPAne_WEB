@@ -33,6 +33,8 @@ export const MenuBlog = () => {
         <div className="navbar-collapse" onClick={handleLimpiaCat}>
           <MenuItem route="/home/blog" caption="Blog" />
           <Divider />
+          <MenuItem route="/home/blognew" caption="Crear Blog" />
+          <Divider />
           <MenuItem route="/home/blogs" caption="Todos los Blogs" />
         </div>
       );
