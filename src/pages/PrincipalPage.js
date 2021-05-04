@@ -1,12 +1,22 @@
 // import React from "react";
-import React from "react";
+import React, { useContext } from "react";
 import imgFB from "../assets/FB.png";
 import imgInst from "../assets/instagram.png";
 import imgEMM from "../assets/emm.png";
 import { BlogPageList, EventsPage, UsuariosOnline } from ".";
 import { ExternalLink } from "../components/ui/atom/FormControls";
+import { AppContext } from "../context/AppContext";
 
 export const PrincipalPage = () => {
+  const { state } = useContext(AppContext);
+  const { params } = state;
+  let sinpemovil = "";
+  if (params[0]) {
+    sinpemovil = params[0].sinpemovil;
+  } else {
+    sinpemovil = "";
+  }
+
   return (
     <div className="flexbox-container">
       <div
@@ -28,6 +38,11 @@ export const PrincipalPage = () => {
           img={imgEMM}
           label="Sitio WEB"
         />
+        <div className="mt-4 mb-4">
+          <h6>Sinpe Movil</h6>
+          <h3>{sinpemovil}</h3>
+        </div>
+        <hr />
         <UsuariosOnline />
       </div>
       <div className="col-md-7 mt-4">

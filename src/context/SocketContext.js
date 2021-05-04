@@ -39,6 +39,13 @@ export const SocketProvider = ({ children }) => {
     });
   }, [socket]);
 
+  useEffect(() => {
+    socket?.on("tus-notificaciones-todas", (notificaciones) => {
+      console.log(notificaciones);
+      // registraUsuariosOnline(usuarios, dispatch);
+    });
+  }, [socket]);
+
   return (
     <SocketContext.Provider value={{ socket, socketState, onLine }}>
       {children}

@@ -5,8 +5,8 @@ import { AppContext } from "../../context/AppContext";
 export const ParamPage = () => {
   const { state } = useContext(AppContext);
   const { params } = state;
-  // const { id, sinpemovil, sinpemovilFIKolbi, usuario } = params[0];
   const { sinpemovil, sinpemovilFIKolbi } = params[0];
+  // const { id, sinpemovil, sinpemovilFIKolbi, usuario } = params[0];
   return (
     <div className="flexbox-container">
       <div className="col-md-2">
