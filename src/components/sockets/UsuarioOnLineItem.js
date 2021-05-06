@@ -13,6 +13,7 @@ export const UsuarioOnLineItem = ({ usuario }) => {
         marginBottom: 5,
         alignContent: "flex-start",
         alignItems: "center",
+        cursor: "pointer",
       }}
     >
       <img

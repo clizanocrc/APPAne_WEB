@@ -68,4 +68,14 @@ export const types = {
 
   socketUsuarioOnLine: "[Sockets] Usuarios en Linea",
   socketUsuarioPurga: "[Sockets] Usuarios en Linea Purga",
+
+  notificacionesRegistra: "[Notificaciones] Registra Notificaciones",
+  notificacionesSelecUsuarios:
+    "[Notificaciones] Selecciona Usuarios a Enviar Notificaciones",
+  notificacionesSelecUsuario:
+    "[Notificaciones] Selecciona Usuario a Enviar Notificaciones",
+  notificacionesPurgaUsuarios:
+    "[Notificaciones] Purga Usuarios a Enviar Notificaciones",
+  notificacionesEliminaUsuario:
+    "[Notificaciones] Elimina Usuario a Enviar Notificaciones",
 };

@@ -30,6 +30,12 @@ import {
   CalendarScreen,
   ConyugePageNavbar,
   BlogPageEdit,
+  NotificacionesPage as NotiPage,
+  NotificacionesNoRead as NotiNew,
+  NotificacionesRead as NotiRead,
+  NotificacionesAll as NotiAll,
+  NotificacionesSpeak as NotiSpeak,
+  NotificacionesSends as NotiSends,
 } from "../pages";
 import { BlogComentariosModal } from "../pages/blog/BlogComentariosModal";
 
@@ -47,8 +53,15 @@ export const DashboardRoutes = () => {
           <Route exact path="/home/usuariosalta" component={UsuariosAltaPage} />
           <Route exact path="/home/admin" component={AdminPage} />
           <Route exact path="/home/param" component={ParamPage} />
-          <Route exact path="/home/notifi" component={NotificacionSend} />
           <Route exact path="/home/perfil" component={PerfilPage} />
+          <Route exact path="/home/sendnotifi" component={NotificacionSend} />
+
+          <Route exact path="/home/notifis" component={NotiPage} />
+          <Route exact path="/home/notinoread" component={NotiNew} />
+          <Route exact path="/home/notiread" component={NotiRead} />
+          <Route exact path="/home/notiall" component={NotiAll} />
+          <Route exact path="/home/notispeak" component={NotiSpeak} />
+          <Route exact path="/home/notisends" component={NotiSends} />
 
           <Route exact path="/home/directorio" component={DirectorioPage} />
           <Route exact path="/home/matrimonios" component={MatrimoniosPage} />
@@ -61,21 +74,17 @@ export const DashboardRoutes = () => {
           />
           <Route exact path="/home/conyuge" component={ConyugePage} />
           <Route exact path="/home/conyugenav" component={ConyugePageNavbar} />
-
           <Route exact path="/home/sacerdotes" component={SacerdotesPage} />
           <Route exact path="/home/sacerdote" component={SacerdotePage} />
           <Route exact path="/home/sacerdoteedit" component={SacerdotesEdit} />
           <Route exact path="/home/sacerdotenew" component={SacerdoteAdd} />
           <Route exact path="/home/calendario" component={CalendarScreen} />
-
           <Route exact path="/home/celebraciones" component={CelebPage} />
-
           <Route exact path="/home/blog" component={BlogPage} />
           <Route exact path="/home/blogs" component={BlogsPage} />
           <Route exact path="/home/blognew" component={BlogPageAdd} />
           <Route exact path="/home/blogedit" component={BlogPageEdit} />
           <Route exact path="/home/blogview" component={BlogPageView} />
-
           <Redirect to="/home" />
         </Switch>
       </div>

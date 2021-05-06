@@ -27,7 +27,7 @@ export const exitoFire = (texto = "Exitoso", time = 1500) => {
 };
 
 export const errorSimpleFire = (texto = "Error") => {
-  Swal.fire("Error", { texto }, "error");
+  Swal.fire("Error", texto, "error");
 };
 
 export const exitoFireOK = (texto = "Exitoso") => {
@@ -38,6 +38,23 @@ export const exitoFireOK = (texto = "Exitoso") => {
       "https://res.cloudinary.com/dyor179ps/image/upload/v1619880963/APPAne/params/emm4_qo1mfy.png",
     imageWidth: 225,
     imageHeight: 275,
+  });
+};
+
+export const notificacionFire = (data) => {
+  const { msg, images } = data;
+  Swal.fire({
+    // icon: "success",
+    title: msg,
+    imageUrl: images,
+    imageWidth: 100,
+    imageHeight: 125,
+    showClass: {
+      popup: "animate__animated animate__fadeInDown",
+    },
+    hideClass: {
+      popup: "animate__animated animate__fadeOutUp",
+    },
   });
 };
 

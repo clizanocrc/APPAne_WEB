@@ -6,6 +6,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { MenuItem } from "./atom/MenuItem";
 import { MenuItemPerfil } from "./atom/MenuItemPerfil";
 import { SearchForm } from "./SearchForm";
+import { MenuItemNotificaciones } from "./atom/MenuItemNotificaciones";
 
 export const NavbarMain = () => {
   const { auth, logout } = useContext(AuthContext);
@@ -42,9 +43,6 @@ export const NavbarMain = () => {
             caption="Directorio"
             // icon="fa fa-address-card"
           />
-          {/* <MenuItem route="/home/docs" caption="Documentos" icon="fa fa-file" /> */}
-          {/* <MenuItem route="/home/docs" caption="Documentos" /> */}
-          {/* <MenuItem route="/home/blog" caption="Blog" icon="fa fa-blog" /> */}
           <MenuItem route="/home/blog" caption="Blog" />
           <MenuItem
             route="/home/calendario"
@@ -56,6 +54,8 @@ export const NavbarMain = () => {
       <SearchForm />
       <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
         <ul className="navbar-nav ml-auto">
+          <Divider orientation="vertical" flexItem />
+          <MenuItemNotificaciones route="/home/notifis" />
           <Divider orientation="vertical" flexItem />
           <MenuItemPerfil route="/home/perfil" caption={auth.name} />
           <button className="btn btn-outline-danger" onClick={handleLogout}>

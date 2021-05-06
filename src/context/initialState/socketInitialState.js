@@ -1,4 +1,7 @@
 export const initialState = {
   usuariosOnLine: [],
-  notificaciones: [],
+  total: 0,
+  notificacionesEnviadas: [],
+  notificacionesRecibidas: [],
+  usuariosSeleccionados: [],
 };

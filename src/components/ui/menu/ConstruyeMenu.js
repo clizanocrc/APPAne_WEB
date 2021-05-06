@@ -3,13 +3,14 @@ import { MenuDirectorio } from "./MenuDirectorio";
 import { MenuParametros } from "./MenuParametros";
 import { MenuVacio } from "./MenuVacio";
 import { MenuBlog } from "./MenuBlog";
+import { MenuNotificaciones } from "./MenuNotificaciones";
 
 export const ConstruyeMenu = ({ option }) => {
   switch (option) {
     case "usuarios":
     case "admin":
     case "param":
-    case "notifi":
+    case "sendnotifi":
       return <MenuParametros etiquetaHome="Panel" />;
     case "usuariosalta":
       return <MenuParametros etiquetaHome="Alta de Usuarios" />;
@@ -32,6 +33,13 @@ export const ConstruyeMenu = ({ option }) => {
     case "blognew":
     case "blogview":
       return <MenuBlog etiquetaHome="Blog" />;
+    case "notifis":
+    case "notinoread":
+    case "notiread":
+    case "notiall":
+    case "notispeak":
+    case "notisends":
+      return <MenuNotificaciones etiquetaHome="Mensajes" />;
     case "vacia":
       return <MenuParametros etiquetaHome="" />;
     default:

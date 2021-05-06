@@ -122,6 +122,12 @@ a:active {
 a:hover {
   color: black;
   border-radius: 30;
-  background-color: lightgreen;
+  /* background-color: lightgreen; */
   text-decoration: underline;
+}
+
+.divjustificadocentro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

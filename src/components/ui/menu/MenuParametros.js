@@ -38,9 +38,9 @@ export const MenuParametros = ({ etiquetaHome }) => {
           <Divider />
 
           <MenuItem
-            route="/home/notifi"
+            route="/home/sendnotifi"
             caption="Notificaciones"
-            icon="fa fa-comment"
+            icon="fa fa-share"
           />
         </div>
       );

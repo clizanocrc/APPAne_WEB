@@ -59,6 +59,11 @@ export const initialFormBlog = {
   categoria: "60900be736311057d409d00d",
 };
 
+export const initialFormNotificaciones = {
+  title: "",
+  notes: "",
+};
+
 // export const initialFormMatrimonio = {
 //   nombrematrimonio: "Lizano",
 //   telefono: "24463218",

@@ -13,7 +13,7 @@ import { SacerdotePageEdit } from "./directorio/SacerdotePageEdit";
 import { SacerdotesPageAdd } from "./directorio/SacerdotesPageAdd";
 import { UsuariosPage } from "./admin/UsuariosPage";
 import { UsuariosAltaPage } from "./admin/UsuariosAltaPage";
-import { NotificacionSend } from "./admin/NotificacionSend";
+import { NotificacionSend } from "./notificaciones/NotificacionSend";
 import { MatrimoniosPageEdit } from "./directorio/MatrimoniosPageEdit";
 import { CalendarScreen } from "./calendario/CalendarScreen";
 import { EventsPage } from "./calendario/EventsPage";
@@ -27,6 +27,12 @@ import { ConyugePage } from "./directorio/ConyugePage";
 import { ConyugePageNavbar } from "./directorio/ConyugePageNavbar";
 import { BlogPageEdit } from "./blog/BlogPageEdit";
 import { UsuariosOnline } from "./admin/UsuariosOnline";
+import { NotificacionesPage } from "./notificaciones/NotificacionesPage";
+import { NotificacionesNoRead } from "./notificaciones/NotificacionesNoRead";
+import { NotificacionesRead } from "./notificaciones/NotificacionesRead";
+import { NotificacionesAll } from "./notificaciones/NotificacionesAll";
+import { NotificacionesSpeak } from "./notificaciones/NotificacionesSpeak";
+import { NotificacionesSends } from "./notificaciones/NotificacionesSends";
 
 export {
   AdminPage,
@@ -58,4 +64,10 @@ export {
   CalendarScreen,
   EventsPageCol,
   EventsPage,
+  NotificacionesPage,
+  NotificacionesNoRead,
+  NotificacionesRead,
+  NotificacionesAll,
+  NotificacionesSpeak,
+  NotificacionesSends,
 };

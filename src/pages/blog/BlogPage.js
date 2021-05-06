@@ -52,7 +52,7 @@ export const BlogPage = () => {
               key={categ.id}
               onClick={() => handleClick(categ.id)}
             >
-              <Link>
+              <Link style={{ cursor: "pointer" }}>
                 {categ.descripcion}
                 {" :   "}
                 {categoriasContador[categ.descripcion]
