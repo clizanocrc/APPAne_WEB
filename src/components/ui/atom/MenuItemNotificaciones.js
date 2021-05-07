@@ -9,7 +9,10 @@ export const MenuItemNotificaciones = ({ route }) => {
   const { socketState, socket } = useContext(SocketContext);
   const { auth } = useContext(AuthContext);
   const { notificacionesRecibidas } = socketState;
-  const total = notificacionesRecibidas.length;
+
+  const sinLeer = notificacionesRecibidas.filter((noti) => !noti.leido);
+
+  const total = sinLeer.length;
   const style = "nav-item nav-link text-info";
 
   const handleNotificaciones = () => {

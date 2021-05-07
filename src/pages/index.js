@@ -30,9 +30,9 @@ import { UsuariosOnline } from "./admin/UsuariosOnline";
 import { NotificacionesPage } from "./notificaciones/NotificacionesPage";
 import { NotificacionesNoRead } from "./notificaciones/NotificacionesNoRead";
 import { NotificacionesRead } from "./notificaciones/NotificacionesRead";
-import { NotificacionesAll } from "./notificaciones/NotificacionesAll";
 import { NotificacionesSpeak } from "./notificaciones/NotificacionesSpeak";
 import { NotificacionesSends } from "./notificaciones/NotificacionesSends";
+import { NotificacionPage } from "./notificaciones/NotificacionPage";
 
 export {
   AdminPage,
@@ -67,7 +67,7 @@ export {
   NotificacionesPage,
   NotificacionesNoRead,
   NotificacionesRead,
-  NotificacionesAll,
   NotificacionesSpeak,
   NotificacionesSends,
+  NotificacionPage,
 };

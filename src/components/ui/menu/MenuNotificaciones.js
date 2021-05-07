@@ -13,7 +13,7 @@ export const MenuNotificaciones = ({ etiquetaHome }) => {
 
       <Divider />
 
-      {auth.rol === "SUPER_ADMIN_ROLE" && (
+      {(auth.rol === "SUPER_ADMIN_ROLE" || auth.rol === "ADMIN_ROLE") && (
         <MenuItem
           route="/home/sendnotifi"
           caption="Mensajes Masivos"
@@ -28,12 +28,6 @@ export const MenuNotificaciones = ({ etiquetaHome }) => {
         icon="fa fa-inbox"
       />
       <MenuItem route="/home/notiread" caption="Leidos" icon="fa fa-glasses" />
-
-      <MenuItem
-        route="/home/notiall"
-        caption="Todos"
-        icon="fa fa-globe-americas"
-      />
 
       <MenuItem
         route="/home/notisends"

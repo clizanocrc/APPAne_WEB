@@ -4,4 +4,5 @@ export const initialState = {
   notificacionesEnviadas: [],
   notificacionesRecibidas: [],
   usuariosSeleccionados: [],
+  notificacionActiva: [],
 };

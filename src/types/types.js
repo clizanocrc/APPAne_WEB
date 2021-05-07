@@ -78,4 +78,7 @@ export const types = {
     "[Notificaciones] Purga Usuarios a Enviar Notificaciones",
   notificacionesEliminaUsuario:
     "[Notificaciones] Elimina Usuario a Enviar Notificaciones",
+  setNotificacionActiva: "[Notificaciones] Notificacion Activa",
+  updateNotificacionActiva: "[Notificaciones] Notificacion Activa Actualiza",
+  unSetNotificacionActiva: "[Notificaciones] Unset Notificacion Activa",
 };

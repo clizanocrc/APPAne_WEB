@@ -1,10 +1,13 @@
 import { types } from "../../types/types";
 
 export const registraUsuariosOnline = (usuarios, dispatch) => {
+  const UsuariosOnLine = usuarios.filter(
+    (usuario) => usuario.rol !== "NEW_USER_ROLE"
+  );
   dispatch({
     type: types.socketUsuarioOnLine,
     payload: {
-      usuariosOnLine: usuarios,
+      usuariosOnLine: UsuariosOnLine,
     },
   });
 };

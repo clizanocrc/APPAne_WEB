@@ -24,7 +24,7 @@ export const MenuItemPerfil = ({ route, caption }) => {
             height: "40px",
             objectFit: "fill",
             borderRadius: 50,
-            backgroundColor: "lightslategray",
+            // backgroundColor: "lightslategray",
             marginTop: 5,
             marginBottom: 5,
             marginRight: 10,

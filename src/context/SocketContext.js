@@ -50,7 +50,9 @@ export const SocketProvider = ({ children }) => {
         payload: notificaciones,
       });
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [socket]);
+
   //Escuchar respuestas del resultado del envío de notificaciones
   useEffect(() => {
     socket?.on("resp-notifi", (resp) => {
@@ -59,6 +61,14 @@ export const SocketProvider = ({ children }) => {
         desSeleccionaUsuarios();
       } else {
         errorSimpleFire(resp.msg);
+      }
+    });
+  }, [socket]);
+
+  useEffect(() => {
+    socket?.on("resp-notifi-leida", (resp) => {
+      if (resp.ok) {
+        updateNotiSelected(resp.notificacion);
       }
     });
   }, [socket]);
@@ -74,6 +84,12 @@ export const SocketProvider = ({ children }) => {
 
   //Acciones
 
+  const updateNotiSelected = (payload) => {
+    dispatch({
+      type: types.updateNotificacionActiva,
+      payload,
+    });
+  };
   const seleccionaUsuarios = () => {
     dispatch({
       type: types.notificacionesSelecUsuarios,
@@ -92,10 +108,24 @@ export const SocketProvider = ({ children }) => {
       payload,
     });
   };
+
   const eliminaUsuario = (payload) => {
     dispatch({
       type: types.notificacionesEliminaUsuario,
       payload,
+    });
+  };
+
+  const setNotificacion = (payload) => {
+    dispatch({
+      type: types.setNotificacionActiva,
+      payload,
+    });
+  };
+
+  const UnSetNotificacion = () => {
+    dispatch({
+      type: types.unSetNotificacionActiva,
     });
   };
 
@@ -109,6 +139,8 @@ export const SocketProvider = ({ children }) => {
         desSeleccionaUsuarios,
         seleccionaUsuario,
         eliminaUsuario,
+        setNotificacion,
+        UnSetNotificacion,
       }}
     >
       {children}

@@ -1,15 +1,35 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { NavbarLeft } from "../../components/ui/NavbarLeft";
+import { SocketContext } from "../../context/SocketContext";
+import { NotiCard } from "../../components/NotiCard";
+import { NotificacionPage } from "./NotificacionPage";
 
 export const NotificacionesNoRead = () => {
+  const { socketState, UnSetNotificacion } = useContext(SocketContext);
+  const { notificacionesRecibidas } = socketState;
+
+  const sinLeer = notificacionesRecibidas.filter(
+    (noti) => noti.leido === false
+  );
+
+  useState(() => {
+    UnSetNotificacion();
+  }, [notificacionesRecibidas]);
+
   return (
     <div className="flexbox-container">
       <div className="col-md-2">
         <NavbarLeft />
       </div>
 
-      <div>
-        <h6>Mensajes Sin Leer</h6>
+      <div className="col-md-4" style={{ height: "85vh", overflowY: "scroll" }}>
+        {sinLeer.map((noti) => (
+          <NotiCard key={noti.id} noti={noti} />
+        ))}
+      </div>
+      <div className={"m-4"}>
+        <h4 className={"mb-4"}>Mensajes sin Leer</h4>
+        <NotificacionPage />
       </div>
     </div>
   );

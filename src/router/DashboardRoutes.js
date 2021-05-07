@@ -33,7 +33,6 @@ import {
   NotificacionesPage as NotiPage,
   NotificacionesNoRead as NotiNew,
   NotificacionesRead as NotiRead,
-  NotificacionesAll as NotiAll,
   NotificacionesSpeak as NotiSpeak,
   NotificacionesSends as NotiSends,
 } from "../pages";
@@ -59,7 +58,6 @@ export const DashboardRoutes = () => {
           <Route exact path="/home/notifis" component={NotiPage} />
           <Route exact path="/home/notinoread" component={NotiNew} />
           <Route exact path="/home/notiread" component={NotiRead} />
-          <Route exact path="/home/notiall" component={NotiAll} />
           <Route exact path="/home/notispeak" component={NotiSpeak} />
           <Route exact path="/home/notisends" component={NotiSends} />
 

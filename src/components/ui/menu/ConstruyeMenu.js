@@ -36,7 +36,6 @@ export const ConstruyeMenu = ({ option }) => {
     case "notifis":
     case "notinoread":
     case "notiread":
-    case "notiall":
     case "notispeak":
     case "notisends":
       return <MenuNotificaciones etiquetaHome="Mensajes" />;

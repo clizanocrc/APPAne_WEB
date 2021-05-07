@@ -131,3 +131,9 @@ a:hover {
   align-items: center;
   justify-content: center;
 }
+
+.divjustificadoizq {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}

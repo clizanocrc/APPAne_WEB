@@ -5,17 +5,17 @@ import { SocketContext } from "../context/SocketContext";
 import defaultUser from "../assets/defaultUser.png";
 import { IconRed } from "./ui/atom/IconRed";
 
-export const NotiCard = ({ noti }) => {
-  const { socket, setNotificacion } = useContext(SocketContext);
+export const NotiCardSend = ({ noti }) => {
+  const { setNotificacion } = useContext(SocketContext);
   const fecha = moment(noti.fechaenviado).format("DD-MMMM-yyyy HH:MM");
   const color = !noti.leido ? "lightgreen" : "lightgrey";
   const handleClick = (e) => {
     e.preventDefault();
     setNotificacion(noti);
-    if (!noti.leido) {
-      socket.emit("notificacion-leida", noti);
-    }
-    // setNotificacion(noti);
+    // if (!noti.leido) {
+    //   socket.emit("notificacion-leida", noti);
+    // }
+    // // setNotificacion(noti);
   };
 
   const textoLectura = !noti.fechaleido
@@ -39,7 +39,7 @@ export const NotiCard = ({ noti }) => {
       <div className="mb-2 ml-2">
         <img
           alt={noti.title}
-          src={noti.de.images ? noti.de.images : defaultUser}
+          src={noti.para.images ? noti.para.images : defaultUser}
           style={{
             width: "40px",
             height: "40px",
@@ -51,7 +51,7 @@ export const NotiCard = ({ noti }) => {
             marginRight: 10,
           }}
         />
-        <b>De: {noti.de.nombre}</b>
+        <b>Para: {noti.para.nombre}</b>
       </div>
       <div className="container">
         <h6>
