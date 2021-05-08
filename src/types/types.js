@@ -70,6 +70,8 @@ export const types = {
   socketUsuarioPurga: "[Sockets] Usuarios en Linea Purga",
 
   notificacionesRegistra: "[Notificaciones] Registra Notificaciones",
+  notificacionesRecibidas: "[Notificaciones] Registra Notificaciones Recibidas",
+  notificacionesEnviadas: "[Notificaciones] Registra Notificaciones Enviadas",
   notificacionesSelecUsuarios:
     "[Notificaciones] Selecciona Usuarios a Enviar Notificaciones",
   notificacionesSelecUsuario:
@@ -81,4 +83,10 @@ export const types = {
   setNotificacionActiva: "[Notificaciones] Notificacion Activa",
   updateNotificacionActiva: "[Notificaciones] Notificacion Activa Actualiza",
   unSetNotificacionActiva: "[Notificaciones] Unset Notificacion Activa",
+
+  showLoadingMensaje: "[APP] Show Loading Mensaje",
+  hideLoadingMensaje: "[APP] Hide Loading Mensaje",
+
+  activarChat: "[Chat Activa Chat]",
+  cargaChat: "[Chat] carga Chat",
 };

@@ -17,32 +17,6 @@ import { DateColorEvent } from "../../helpers/eventsFilter";
 
 moment.locale("es");
 const localizer = momentLocalizer(moment);
-
-// const eventos = [
-//   {
-//     title: "Tarea de hoy",
-//     start: moment().toDate(),
-//     end: moment().add(2, "hours").toDate(),
-//     // bgcolor: "#fafafa",
-//     notes: "Pasar al Supermercado",
-//     user: {
-//       _id: "123",
-//       name: "Carlos",
-//     },
-//   },
-//   {
-//     title: "Tarea de Mañana",
-//     start: moment().toDate(),
-//     end: moment().add(2, "hours").toDate(),
-//     // bgcolor: "#fafafa",
-//     notes: "Pasar al Supermercado",
-//     user: {
-//       _id: "123",
-//       name: "Carlos",
-//     },
-//   },
-// ];
-
 export const CalendarScreen = () => {
   const {
     state,

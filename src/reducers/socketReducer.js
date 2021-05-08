@@ -18,10 +18,20 @@ export const socketReducer = (socketState, action) => {
         total: action.payload.total,
         notificacionesEnviadas: action.payload.notificacionesEnviadas,
         notificacionesRecibidas: action.payload.notificacionesRecibidas,
-        // notificacionActiva: action.payload.notificacionesRecibidas.filter(
-        //   (e) => e.id === socketState.notificacionActiva.id
-        // ),
       };
+
+    case types.notificacionesRecibidas:
+      return {
+        ...socketState,
+        notificacionesRecibidas: action.payload.notificacionesRecibidas,
+      };
+
+    case types.notificacionesEnviadas:
+      return {
+        ...socketState,
+        notificacionesEnviadas: action.payload.notificacionesEnviadas,
+      };
+
     case types.notificacionesSelecUsuarios:
       return {
         ...socketState,
@@ -64,6 +74,20 @@ export const socketReducer = (socketState, action) => {
         ...socketState,
         notificacionActiva: [],
       };
+
+    //Chat
+    case types.activarChat:
+      return {
+        ...socketState,
+        chatActivo: action.payload,
+      };
+
+    case types.cargaChat:
+      return {
+        ...socketState,
+        chat: action.payload,
+      };
+
     default:
       return socketState;
   }

@@ -79,6 +79,7 @@ export const NotificacionPage = () => {
 
   return (
     <div>
+      <p>Último mensaje visto</p>
       <div
         style={{
           borderColor: "Highlight",

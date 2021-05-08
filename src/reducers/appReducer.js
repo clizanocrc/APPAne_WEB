@@ -96,6 +96,18 @@ export const appReducer = (state, action) => {
         ...state,
         isLoadingComentarios: false,
       };
+
+    case types.showLoadingMensaje:
+      return {
+        ...state,
+        isLoadingMensaje: true,
+      };
+
+    case types.hideLoadingMensaje:
+      return {
+        ...state,
+        isLoadingMensaje: false,
+      };
     default:
       return state;
   }

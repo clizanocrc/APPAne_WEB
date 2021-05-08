@@ -1,16 +1,17 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { NavbarLeft } from "../../components/ui/NavbarLeft";
 import { SocketContext } from "../../context/SocketContext";
 import { NotiCardSend } from "../../components/NotiCardSend";
 import { NotificacionSendPage } from "./NotificacionSendPage";
+import { AddNewMensaje } from "../../components/ui/AddNewMensaje";
 
 export const NotificacionesSends = () => {
-  const { socketState, UnSetNotificacion } = useContext(SocketContext);
+  const { socketState } = useContext(SocketContext);
   const { notificacionesEnviadas } = socketState;
 
-  useState(() => {
-    UnSetNotificacion();
-  }, [notificacionesEnviadas]);
+  // useState(() => {
+  //   UnSetNotificacion();
+  // }, [notificacionesEnviadas]);
 
   return (
     <div className="flexbox-container">
@@ -26,6 +27,7 @@ export const NotificacionesSends = () => {
         <h4 className={"mb-4"}>Mensajes Enviados</h4>
         <NotificacionSendPage />
       </div>
+      <AddNewMensaje />
     </div>
   );
 };

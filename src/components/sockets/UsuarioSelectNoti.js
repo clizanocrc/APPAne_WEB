@@ -11,7 +11,14 @@ export const UsuarioSelectNoti = ({ usuario }) => {
         alignContent: "flex-start",
       }}
     >
-      <small className="ml-2">{usuario.nombre}</small>
+      <p
+        className="ml-2"
+        style={{
+          color: "blue",
+        }}
+      >
+        {usuario.nombre}
+      </p>
     </div>
   );
 };

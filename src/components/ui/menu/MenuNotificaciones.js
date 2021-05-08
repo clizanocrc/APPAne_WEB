@@ -1,25 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Divider } from "@material-ui/core";
 
-import { AuthContext } from "../../../context/AuthContext";
 import { MenuItem } from "../atom/MenuItem";
 
 export const MenuNotificaciones = ({ etiquetaHome }) => {
-  const { auth } = useContext(AuthContext);
-
   return (
     <div className="navbar-collapse">
       <MenuItem route="/home/notifis" caption={etiquetaHome} />
 
-      <Divider />
-
-      {(auth.rol === "SUPER_ADMIN_ROLE" || auth.rol === "ADMIN_ROLE") && (
-        <MenuItem
-          route="/home/sendnotifi"
-          caption="Mensajes Masivos"
-          icon="fa fa-share"
-        />
-      )}
       <Divider />
 
       <MenuItem
@@ -37,11 +25,7 @@ export const MenuNotificaciones = ({ etiquetaHome }) => {
 
       <Divider />
 
-      <MenuItem
-        route="/home/notispeak"
-        caption="Conversaciones"
-        icon="fa fa-comments"
-      />
+      <MenuItem route="/home/notispeak" caption="Chat" icon="fa fa-comments" />
     </div>
   );
 };

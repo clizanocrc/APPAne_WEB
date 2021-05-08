@@ -1,15 +1,13 @@
 import React, { useContext } from "react";
-import { UsuarioOnLineItem } from "../../components/sockets/UsuarioOnLineItem";
+import { UsuarioOnLineItemChat } from "../../components/sockets/UsuarioOnLineItemChat";
 import { SocketContext } from "../../context/SocketContext";
 
-export const UsuariosOnline = () => {
+export const UsuariosOnlineChat = () => {
   const { socketState } = useContext(SocketContext);
   return (
-    <div>
-      <h6 className="mb-2 mt-">Personas</h6>
-
+    <div className={"mt-2"}>
       {socketState.usuariosOnLine.map((usuario) => (
-        <UsuarioOnLineItem key={usuario.uid} usuario={usuario} />
+        <UsuarioOnLineItemChat key={usuario.uid} usuario={usuario} />
       ))}
     </div>
   );

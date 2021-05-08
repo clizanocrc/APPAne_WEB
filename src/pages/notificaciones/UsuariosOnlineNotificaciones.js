@@ -17,16 +17,16 @@ export const UsuariosOnlineNotificaciones = () => {
 
   return (
     <div>
-      <h6 className="mb-2 mt-4">Enviar a...</h6>
+      <h6 className="mb-2 mt-1">Enviar a...</h6>
       <div className=" divjustificadocentro mb-2">
         <button className="btn btn-outline-primary" onClick={handleTodos}>
-          A Todos
+          <i className="fa fa-users"></i> Todos
         </button>
         <button
           className="btn btn-outline-primary ml-1"
           onClick={handleNinguno}
         >
-          Ninguno
+          <i className="fa fa-user-slash"></i> Ninguno
         </button>
       </div>
       {socketState.usuariosOnLine.map((usuario) => (

@@ -227,7 +227,13 @@ export const TextArea = ({ label, name, value, callBack }) => {
   );
 };
 
-export const TextAreaNoIcon = ({ label, name, value, callBack }) => {
+export const TextAreaNoIcon = ({
+  label,
+  name,
+  value,
+  callBack,
+  rows = "2",
+}) => {
   return (
     <div>
       <div>
@@ -235,7 +241,7 @@ export const TextAreaNoIcon = ({ label, name, value, callBack }) => {
           className="form-control"
           name={name}
           placeholder={label}
-          rows="2"
+          rows={rows}
           value={value}
           onChange={callBack}
         ></textarea>

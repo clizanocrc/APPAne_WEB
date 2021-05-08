@@ -10,7 +10,6 @@ export const ConstruyeMenu = ({ option }) => {
     case "usuarios":
     case "admin":
     case "param":
-    case "sendnotifi":
       return <MenuParametros etiquetaHome="Panel" />;
     case "usuariosalta":
       return <MenuParametros etiquetaHome="Alta de Usuarios" />;

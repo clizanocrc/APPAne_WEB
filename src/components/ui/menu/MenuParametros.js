@@ -36,12 +36,6 @@ export const MenuParametros = ({ etiquetaHome }) => {
             icon="fa fa-user-plus"
           />
           <Divider />
-
-          <MenuItem
-            route="/home/sendnotifi"
-            caption="Notificaciones"
-            icon="fa fa-share"
-          />
         </div>
       );
 

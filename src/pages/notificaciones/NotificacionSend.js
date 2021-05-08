@@ -1,5 +1,5 @@
 import moment from "moment";
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { UsuariosOnlineNotificaciones } from "./UsuariosOnlineNotificaciones";
 import { NavbarLeft } from "../../components/ui/NavbarLeft";
 import { AuthContext } from "../../context/AuthContext";
@@ -7,7 +7,10 @@ import { SocketContext } from "../../context/SocketContext";
 import { UsuariosSelectedNoti } from "./UsuariosSelectedNoti";
 import { useForm } from "../../hooks/useForm";
 import { initialFormNotificaciones } from "../../context/initialState/formInitial";
-import { TextArea, TextControl } from "../../components/ui/atom/FormControls";
+import {
+  TextArea,
+  TextControlCol,
+} from "../../components/ui/atom/FormControls";
 
 export const NotificacionSend = () => {
   const { socket, socketState } = useContext(SocketContext);
@@ -37,14 +40,13 @@ export const NotificacionSend = () => {
       <div className="col-md-2">
         <NavbarLeft />
       </div>
-      <div className="col-md-2" style={{ height: "85vh", overflowY: "scroll" }}>
+      <div className="col-md-3" style={{ height: "85vh", overflowY: "scroll" }}>
         <UsuariosOnlineNotificaciones />
       </div>
-      <div className="col-md-2" style={{ height: "85vh", overflowY: "scroll" }}>
-        <UsuariosSelectedNoti />
-      </div>
-      <div className="col-md-4 mt-5">
-        <TextControl
+
+      <div className="col-md-7 mt-5">
+        {/* <UsuariosSelectedListNoti /> */}
+        <TextControlCol
           label={"Título"}
           name={"title"}
           value={formValues.title}
@@ -56,9 +58,15 @@ export const NotificacionSend = () => {
           value={formValues.notes}
           callBack={onChange}
         />
-        <button className="btn btn-outline-primary mt-5" onClick={handleCrear}>
+        <button className="btn btn-outline-primary mt-2" onClick={handleCrear}>
           Enviar Mensaje
         </button>
+        <div
+          style={{ height: "40vh", overflowY: "scroll" }}
+          className="col-md-4"
+        >
+          <UsuariosSelectedNoti />
+        </div>
       </div>
     </div>
   );

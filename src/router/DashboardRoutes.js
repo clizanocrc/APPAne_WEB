@@ -37,6 +37,7 @@ import {
   NotificacionesSends as NotiSends,
 } from "../pages";
 import { BlogComentariosModal } from "../pages/blog/BlogComentariosModal";
+import { NotificacionCreaModal } from "../pages/notificaciones/NotificacionCreaModal";
 
 export const DashboardRoutes = () => {
   return (
@@ -44,6 +45,7 @@ export const DashboardRoutes = () => {
       <SpinerModal />
       <CalendarModal />
       <BlogComentariosModal />
+      <NotificacionCreaModal />
       <NavbarMain />
       <div>
         <Switch>

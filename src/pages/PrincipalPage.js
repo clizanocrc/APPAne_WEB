@@ -20,7 +20,8 @@ export const PrincipalPage = () => {
   return (
     <div className="flexbox-container">
       <div
-        className="col-md-2 mt-2 animate__animated animate__bounceInLeft"
+        // className="col-md-2 mt-2 animate__animated animate__pulse"
+        className="col-md-2 mt-2"
         style={{ height: "85vh", overflowY: "scroll" }}
       >
         <ExternalLink

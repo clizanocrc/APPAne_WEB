@@ -6,4 +6,5 @@ export const initialState = {
   eventoSeleccionado: [],
   params: [],
   isLoadingComentarios: false,
+  isLoadingMensaje: false,
 };

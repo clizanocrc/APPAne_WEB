@@ -45,17 +45,16 @@ export const UsuarioOnLineItemNoti = ({ usuario }) => {
           height: "30px",
           objectFit: "contain",
           borderRadius: 50,
-          marginTop: 5,
-          marginBottom: 5,
-          //   marginLeft: 1,
+          marginTop: 2,
+          marginBottom: 2,
         }}
       />
       {seleccionado.length > 0 ? (
-        <i className="fa fa-check-circle bigicon ml-1"></i>
+        <i className="fa fa-user-check bigicon ml-1"></i>
       ) : (
-        <i className="fa fa-circle bigicon ml-1"></i>
+        <i className="fa fa-user bigicon ml-1"></i>
       )}
-      <small className="ml-2">{usuario.nombre.substring(0, 18)}...</small>
+      <small className="ml-1">{usuario.nombre.substring(0, 20)}..</small>
     </div>
   );
 };

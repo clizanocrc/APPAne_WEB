@@ -136,6 +136,20 @@ export const AppProvider = ({ children }) => {
       type: types.hideLoadingComentarios,
     });
   };
+
+  //Mensajes
+  const showModalMensajes = () => {
+    dispatch({
+      type: types.showLoadingMensaje,
+    });
+  };
+
+  const hideModalMensajes = () => {
+    dispatch({
+      type: types.hideLoadingMensaje,
+    });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -155,6 +169,8 @@ export const AppProvider = ({ children }) => {
         purgaEventoSelecciondo,
         showModalComentarios,
         hideModalComentarios,
+        showModalMensajes,
+        hideModalMensajes,
       }}
     >
       {children}

@@ -73,6 +73,22 @@ export const SocketProvider = ({ children }) => {
     });
   }, [socket]);
 
+  useEffect(() => {
+    socket?.on("tus-notificaciones-recibidas", (resp) => {
+      if (resp.ok) {
+        setNotificacionesRecibidas(resp);
+      }
+    });
+  }, [socket]);
+
+  useEffect(() => {
+    socket?.on("tus-notificaciones-enviadas", (resp) => {
+      if (resp.ok) {
+        setNotificacionesEnviadas(resp);
+      }
+    });
+  }, [socket]);
+
   // Escuchar Notificacion personal
   useEffect(() => {
     socket?.on("notifi-personal", (resp) => {
@@ -82,7 +98,38 @@ export const SocketProvider = ({ children }) => {
     });
   }, [socket]);
 
+  //Chat
+  const activarChat = async (uid) => {
+    console.log(uid);
+    activaChat(uid);
+    //Cargar los mensajes de la base de datos
+    //TODO: Emitir la solicitud de los mensajes del chat
+
+    // const resp = await fetchConToken(`mensajes/${usuario.uid}`);
+    const resp = [];
+
+    cargarChat(resp);
+
+    //Mover el scroll
+    // scrollToBotton("messagesAll");
+  };
+
   //Acciones
+  //Chat
+
+  const activaChat = (uid) => {
+    dispatch({
+      type: types.activarChat,
+      payload: uid,
+    });
+  };
+
+  const cargarChat = (mensajes) => {
+    dispatch({
+      type: types.cargaChat,
+      payload: mensajes,
+    });
+  };
 
   const updateNotiSelected = (payload) => {
     dispatch({
@@ -123,6 +170,20 @@ export const SocketProvider = ({ children }) => {
     });
   };
 
+  const setNotificacionesRecibidas = (payload) => {
+    dispatch({
+      type: types.notificacionesRecibidas,
+      payload,
+    });
+  };
+
+  const setNotificacionesEnviadas = (payload) => {
+    dispatch({
+      type: types.notificacionesEnviadas,
+      payload,
+    });
+  };
+
   const UnSetNotificacion = () => {
     dispatch({
       type: types.unSetNotificacionActiva,
@@ -141,6 +202,7 @@ export const SocketProvider = ({ children }) => {
         eliminaUsuario,
         setNotificacion,
         UnSetNotificacion,
+        activarChat,
       }}
     >
       {children}
