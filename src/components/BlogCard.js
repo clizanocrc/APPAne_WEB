@@ -12,10 +12,14 @@ export const BlogCard = ({ blog }) => {
     <div
       className="flexbox-container col-md-12"
       style={{
-        backgroundColor: "#EFECE8",
-        borderRadius: 25,
-        borderWidth: "2px",
+        // backgroundColor: "#EFECE8",
+        borderWidth: "1px",
+        borderColor: "powderblue",
+        border: "double",
         margin: 5,
+        borderTopLeftRadius: 25,
+        borderBottomRightRadius: 25,
+        // borderRadius: 25,
       }}
     >
       <div

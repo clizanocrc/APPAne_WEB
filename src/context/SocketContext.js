@@ -7,40 +7,48 @@ import {
   notificacionTimer,
 } from "../helpers/messagesUI";
 import { useSocket } from "../hooks/useSocket";
+import { AuthContext } from "./AuthContext";
 import { socketReducer } from "../reducers/socketReducer";
-import { types } from "../types/types";
 import {
   limpiaUsuariosOnline,
   registraUsuariosOnline,
 } from "./actions/socketActions";
-import { AuthContext } from "./AuthContext";
 import { initialState } from "./initialState/socketInitialState";
+import { types } from "../types/types";
 
 export const SocketContext = createContext();
-
 export const SocketProvider = ({ children }) => {
   const { socket, onLine, conectarSocket, desconectarSocket } = useSocket(
     process.env.REACT_APP_URL
   );
   const { auth } = useContext(AuthContext);
   const [socketState, dispatch] = useReducer(socketReducer, initialState);
+
+  //Listeners
+
+  //#region Socket
   useEffect(() => {
+    //Conectar el Socket cuando el usuario se logea
     if (auth.logged) {
       conectarSocket();
     }
   }, [auth, conectarSocket]);
   useEffect(() => {
+    //Desconectar el siocket cuando el usuario se desconecta
     if (!auth.logged) {
       desconectarSocket();
       limpiaUsuariosOnline(dispatch);
     }
   }, [auth, desconectarSocket]);
-  //Escuchar los cambios en los Usuarios Conectados
   useEffect(() => {
+    //Escuchar los cambios en los Usuarios Conectados
     socket?.on("lista-usuarios", (usuarios) => {
       registraUsuariosOnline(usuarios, auth.uid, dispatch);
     });
   }, [socket, auth]);
+  //#endregion
+
+  //#region Notificaciones
   //Escuchar los cambios en las notificaciones
   useEffect(() => {
     socket?.on("tus-notificaciones-todas", (notificaciones) => {
@@ -91,6 +99,10 @@ export const SocketProvider = ({ children }) => {
       }
     });
   }, [socket]);
+
+  //#endregion
+
+  //#region Chat
   // Escuchar mensajes de chat
   useEffect(() => {
     socket?.on("obtener-chat", (resp) => {
@@ -121,19 +133,25 @@ export const SocketProvider = ({ children }) => {
     socket?.on("chat-no-leido", (resp) => {
       if (resp.ok) {
         chatNoLeido(resp.chatSinLeer);
-        if (resp.chatSinLeer.length > 0) {
-          notificacionTimer(
-            "Tiene nuevos mensajes en el Chat!!!",
-            "Revísalos",
-            1000
-          );
-        }
+        // console.log(socketState);
+        // if (resp.chatSinLeer.length > 0) {
+        //   if (socketState.chatActivo === null) {
+        //     console.log(socketState.chatActivo);
+        //     notificacionTimer(
+        //       "Tiene nuevos mensajes en el Chat!!!",
+        //       "Revísalos",
+        //       1000
+        //     );
+        //   }
+        // }
       }
     });
   }, [socket]);
+  //#endregion
 
   //Acciones
-  //Chat
+
+  //#region Acciones del Chat
 
   const activarChat = async (data) => {
     activaChat(data.mensajesDe);
@@ -176,6 +194,10 @@ export const SocketProvider = ({ children }) => {
       payload: chat,
     });
   };
+
+  //#endregion
+
+  //#region Acciones de Notificaciones
   const updateNotiSelected = (payload) => {
     dispatch({
       type: types.updateNotificacionActiva,
@@ -227,6 +249,7 @@ export const SocketProvider = ({ children }) => {
       type: types.unSetNotificacionActiva,
     });
   };
+  //#endregion
 
   return (
     <SocketContext.Provider

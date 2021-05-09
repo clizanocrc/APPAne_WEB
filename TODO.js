@@ -13,9 +13,3 @@
 //Ojo con estos de aqui para abajo
 
 //TODO: Dashboard de administracion
-
-//TODO: En la Pantalla principal del Blog pindicar las instrucciones de como crear un blog, puede ser una imagen insertada
-
-//TODO: Notificaciones y que los usuarios puedan enviar mensajes, al recibir un mensaje enviar un correo al usuario para atraerlo al sitio y que lo use.
-
-//TODO: Estoy en la parte de modificar el reducer del socket para registrar las notificaciones

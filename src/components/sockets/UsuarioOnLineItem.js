@@ -30,7 +30,8 @@ export const UsuarioOnLineItem = ({ usuario }) => {
   }, [socketState, usuario.uid]);
 
   const color = usuario.conectado ? "lightgreen" : "lightgrey";
-  const colorMsgSinLeer = msgSinLeer > 0 ? "green" : "blue";
+  const coloronLine = usuario.conectado ? "blue" : "grey";
+  const colorMsgSinLeer = msgSinLeer > 0 ? "green" : "grey";
 
   const handleClick = () => {
     if (seleccionado.length > 0) {
@@ -79,7 +80,7 @@ export const UsuarioOnLineItem = ({ usuario }) => {
         </div>
         <div className="divjustificadoizq">
           <div
-            style={{ cursor: "pointer", color: "blue" }}
+            style={{ cursor: "pointer", color: coloronLine }}
             onClick={handleClick}
           >
             <i className="fas fa-send mr-2 ml-2" />
@@ -90,6 +91,7 @@ export const UsuarioOnLineItem = ({ usuario }) => {
           >
             <i className="fas fa-comments mr-1" />
             {msgSinLeer}
+            {/* <i className="fas fa-circle" /> */}
           </div>
         </div>
       </div>
