@@ -1,10 +1,11 @@
+import { Divider } from "@material-ui/core";
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 import { SocketContext } from "../../../context/SocketContext";
 
 export const SendMessage = () => {
   const [message, setMessage] = useState("");
-  const { socket, chat } = useContext(SocketContext);
+  const { socket, socketState } = useContext(SocketContext);
   const { auth } = useContext(AuthContext);
 
   const onChange = ({ target }) => {
@@ -17,24 +18,17 @@ export const SendMessage = () => {
       return;
     }
     setMessage("");
-
-    //Emitir un evento de sockets para enviar el mensaje
-    // {
-    //   de: uid del usuario que envía l mensaje
-    //   para: uid del usuario destino
-    //   mensaje: texto del mensaje
-    // }
-    socket.emit("mensaje-personal", {
+    const msg = {
       de: auth.uid,
-      para: chat.chatActivo,
+      para: socketState.chatActivo,
       mensaje: message,
-    });
-
-    //TODO: dispatch al reducer del chat con el mensaje
+    };
+    socket.emit("mensaje-personal", msg);
   };
 
   return (
     <form onSubmit={OnSubmit}>
+      <Divider />
       <div className="type_msg row">
         <div className="input_msg_write col-sm-9">
           <input
@@ -48,7 +42,7 @@ export const SendMessage = () => {
         </div>
         <div className="col-sm-3 text-center">
           <button className="msg_send_btn mt-3" type="submit">
-            enviar
+            <i className="fas fa-send" />
           </button>
         </div>
       </div>

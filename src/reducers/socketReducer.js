@@ -88,6 +88,26 @@ export const socketReducer = (socketState, action) => {
         chat: action.payload,
       };
 
+    case types.cargaChatNoLeido:
+      return {
+        ...socketState,
+        chatNoLeido: action.payload,
+      };
+
+    case types.resgistraMensajeChat:
+      return {
+        ...socketState,
+        chat: [...socketState.chat, action.payload],
+      };
+
+    case types.leidoMensajeChat:
+      // console.log(action.payload);
+      return {
+        ...socketState,
+        chat: socketState.chat.map((e) =>
+          e._id === action.payload._id ? action.payload : e
+        ),
+      };
     default:
       return socketState;
   }

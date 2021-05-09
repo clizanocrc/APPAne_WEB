@@ -1,25 +1,41 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import defaultUser from "../../assets/defaultUser.png";
+import { AuthContext } from "../../context/AuthContext";
 import { SocketContext } from "../../context/SocketContext";
 
 export const UsuarioOnLineItemChat = ({ usuario }) => {
   const { activarChat } = useContext(SocketContext);
+  const { auth } = useContext(AuthContext);
+  const [msgSinLeer, setMsgSinLeer] = useState(0);
+  const { socketState } = useContext(SocketContext);
 
   const color = usuario.conectado ? "lightgreen" : "lightgrey";
+  const colorMsgSinLeer = msgSinLeer > 0 ? "green" : "blue";
+
+  useEffect(() => {
+    const noLeidos = socketState.chatNoLeido.filter(
+      (msg) => msg.de === usuario.uid
+    );
+    setMsgSinLeer(noLeidos.length);
+  }, [socketState, usuario.uid]);
 
   const handleClick = async () => {
-    await activarChat(usuario.uid);
+    await activarChat({
+      miId: auth.uid,
+      mensajesDe: usuario.uid,
+    });
   };
+
   return (
     <div
       className="input-group col-md-12 "
       style={{
-        flexDirection: "row",
         backgroundColor: color,
         borderRadius: 5,
         marginBottom: 5,
-        alignContent: "flex-start",
         alignItems: "center",
+        display: "flex",
+        justifyContent: "space-between",
         cursor: "pointer",
       }}
       onClick={handleClick}
@@ -36,7 +52,11 @@ export const UsuarioOnLineItemChat = ({ usuario }) => {
           marginBottom: 5,
         }}
       />
-      <p className="ml-2">{usuario.nombre.substring(0, 19)}..</p>
+      <small className="ml-2">{usuario.nombre.substring(0, 20)}..</small>
+      <div style={{ color: colorMsgSinLeer }} onClick={handleClick}>
+        <i className="fas fa-comments mr-1" />
+        {msgSinLeer}
+      </div>
     </div>
   );
 };

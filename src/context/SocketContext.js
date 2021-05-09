@@ -4,6 +4,7 @@ import {
   errorSimpleFire,
   exitoFire,
   notificacionFire,
+  notificacionTimer,
 } from "../helpers/messagesUI";
 import { useSocket } from "../hooks/useSocket";
 import { socketReducer } from "../reducers/socketReducer";
@@ -22,9 +23,7 @@ export const SocketProvider = ({ children }) => {
     process.env.REACT_APP_URL
   );
   const { auth } = useContext(AuthContext);
-
   const [socketState, dispatch] = useReducer(socketReducer, initialState);
-
   useEffect(() => {
     if (auth.logged) {
       conectarSocket();
@@ -39,9 +38,9 @@ export const SocketProvider = ({ children }) => {
   //Escuchar los cambios en los Usuarios Conectados
   useEffect(() => {
     socket?.on("lista-usuarios", (usuarios) => {
-      registraUsuariosOnline(usuarios, dispatch);
+      registraUsuariosOnline(usuarios, auth.uid, dispatch);
     });
-  }, [socket]);
+  }, [socket, auth]);
   //Escuchar los cambios en las notificaciones
   useEffect(() => {
     socket?.on("tus-notificaciones-todas", (notificaciones) => {
@@ -50,7 +49,6 @@ export const SocketProvider = ({ children }) => {
         payload: notificaciones,
       });
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [socket]);
 
   //Escuchar respuestas del resultado del envío de notificaciones
@@ -64,7 +62,6 @@ export const SocketProvider = ({ children }) => {
       }
     });
   }, [socket]);
-
   useEffect(() => {
     socket?.on("resp-notifi-leida", (resp) => {
       if (resp.ok) {
@@ -72,7 +69,6 @@ export const SocketProvider = ({ children }) => {
       }
     });
   }, [socket]);
-
   useEffect(() => {
     socket?.on("tus-notificaciones-recibidas", (resp) => {
       if (resp.ok) {
@@ -80,7 +76,6 @@ export const SocketProvider = ({ children }) => {
       }
     });
   }, [socket]);
-
   useEffect(() => {
     socket?.on("tus-notificaciones-enviadas", (resp) => {
       if (resp.ok) {
@@ -88,7 +83,6 @@ export const SocketProvider = ({ children }) => {
       }
     });
   }, [socket]);
-
   // Escuchar Notificacion personal
   useEffect(() => {
     socket?.on("notifi-personal", (resp) => {
@@ -97,40 +91,91 @@ export const SocketProvider = ({ children }) => {
       }
     });
   }, [socket]);
+  // Escuchar mensajes de chat
+  useEffect(() => {
+    socket?.on("obtener-chat", (resp) => {
+      if (resp.ok) {
+        cargarChat(resp.chat);
+      }
+    });
+  }, [socket]);
 
-  //Chat
-  const activarChat = async (uid) => {
-    console.log(uid);
-    activaChat(uid);
-    //Cargar los mensajes de la base de datos
-    //TODO: Emitir la solicitud de los mensajes del chat
+  useEffect(() => {
+    socket?.on("mensaje-personal", (resp) => {
+      if (resp.ok) {
+        registraMensaje(resp.mensaje);
+      }
+    });
+  }, [socket]);
 
-    // const resp = await fetchConToken(`mensajes/${usuario.uid}`);
-    const resp = [];
+  useEffect(() => {
+    socket?.on("chat-leido", (resp) => {
+      // console.log(resp);
+      if (resp.ok) {
+        leidoChat(resp.mensajes);
+      }
+    });
+  }, [socket]);
 
-    cargarChat(resp);
-
-    //Mover el scroll
-    // scrollToBotton("messagesAll");
-  };
+  useEffect(() => {
+    socket?.on("chat-no-leido", (resp) => {
+      if (resp.ok) {
+        chatNoLeido(resp.chatSinLeer);
+        if (resp.chatSinLeer.length > 0) {
+          notificacionTimer(
+            "Tiene nuevos mensajes en el Chat!!!",
+            "Revísalos",
+            1000
+          );
+        }
+      }
+    });
+  }, [socket]);
 
   //Acciones
   //Chat
 
+  const activarChat = async (data) => {
+    activaChat(data.mensajesDe);
+    const payload = {
+      miId: data.miId,
+      mensajesDe: data.mensajesDe,
+    };
+    socket.emit("obtener-chat", payload);
+  };
+  const chatLeido = (uid) => {
+    socket.emit("chat-leido", uid);
+  };
   const activaChat = (uid) => {
     dispatch({
       type: types.activarChat,
       payload: uid,
     });
   };
-
-  const cargarChat = (mensajes) => {
+  const cargarChat = (chat) => {
     dispatch({
       type: types.cargaChat,
-      payload: mensajes,
+      payload: chat,
     });
   };
-
+  const leidoChat = (chat) => {
+    dispatch({
+      type: types.leidoMensajeChat,
+      payload: chat,
+    });
+  };
+  const chatNoLeido = (chat) => {
+    dispatch({
+      type: types.cargaChatNoLeido,
+      payload: chat,
+    });
+  };
+  const registraMensaje = (chat) => {
+    dispatch({
+      type: types.resgistraMensajeChat,
+      payload: chat,
+    });
+  };
   const updateNotiSelected = (payload) => {
     dispatch({
       type: types.updateNotificacionActiva,
@@ -142,48 +187,41 @@ export const SocketProvider = ({ children }) => {
       type: types.notificacionesSelecUsuarios,
     });
   };
-
   const desSeleccionaUsuarios = () => {
     dispatch({
       type: types.notificacionesPurgaUsuarios,
     });
   };
-
   const seleccionaUsuario = (payload) => {
     dispatch({
       type: types.notificacionesSelecUsuario,
       payload,
     });
   };
-
   const eliminaUsuario = (payload) => {
     dispatch({
       type: types.notificacionesEliminaUsuario,
       payload,
     });
   };
-
   const setNotificacion = (payload) => {
     dispatch({
       type: types.setNotificacionActiva,
       payload,
     });
   };
-
   const setNotificacionesRecibidas = (payload) => {
     dispatch({
       type: types.notificacionesRecibidas,
       payload,
     });
   };
-
   const setNotificacionesEnviadas = (payload) => {
     dispatch({
       type: types.notificacionesEnviadas,
       payload,
     });
   };
-
   const UnSetNotificacion = () => {
     dispatch({
       type: types.unSetNotificacionActiva,
@@ -203,6 +241,8 @@ export const SocketProvider = ({ children }) => {
         setNotificacion,
         UnSetNotificacion,
         activarChat,
+        activaChat,
+        chatLeido,
       }}
     >
       {children}

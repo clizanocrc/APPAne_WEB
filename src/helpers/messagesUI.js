@@ -76,3 +76,35 @@ export const confirmDeleteFire = async (titulo) => {
   });
   return resultado;
 };
+
+export const notificacionTimer = (title, mensaje, timer) => {
+  let timerInterval;
+  Swal.fire({
+    title: title,
+    html: mensaje,
+    // html: "I will close in <b></b> milliseconds.",
+    position: "top-end",
+    timer: timer,
+    timerProgressBar: true,
+    didOpen: () => {
+      Swal.showLoading();
+      timerInterval = setInterval(() => {
+        const content = Swal.getContent();
+        if (content) {
+          const b = content.querySelector("b");
+          if (b) {
+            b.textContent = Swal.getTimerLeft();
+          }
+        }
+      }, 100);
+    },
+    willClose: () => {
+      clearInterval(timerInterval);
+    },
+  }).then((result) => {
+    /* Read more about handling dismissals below */
+    if (result.dismiss === Swal.DismissReason.timer) {
+      console.log("I was closed by the timer");
+    }
+  });
+};

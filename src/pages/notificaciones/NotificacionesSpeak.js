@@ -21,7 +21,7 @@ export const NotificacionesSpeak = () => {
         className="col-md-6 m-2"
         style={{
           height: "85vh",
-          overflowY: "scroll",
+          overflowY: "none",
           borderColor: "Highlight",
           borderStyle: "solid",
           borderRadius: 15,

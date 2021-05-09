@@ -1,8 +1,8 @@
 import { types } from "../../types/types";
 
-export const registraUsuariosOnline = (usuarios, dispatch) => {
+export const registraUsuariosOnline = (usuarios, myId, dispatch) => {
   const UsuariosOnLine = usuarios.filter(
-    (usuario) => usuario.rol !== "NEW_USER_ROLE"
+    (usuario) => usuario.rol !== "NEW_USER_ROLE" && usuario.uid !== myId
   );
   dispatch({
     type: types.socketUsuarioOnLine,

@@ -5,8 +5,17 @@ export const OutgoingMsg = ({ msg }) => {
   return (
     <div className="outgoing_msg">
       <div className="sent_msg">
-        <p>{msg.mensaje}</p>
-        <span className="time_date"> {horaMes(msg.createdAt)}</span>
+        <div className="received_withd_msg">
+          <p>{msg.mensaje}</p>
+          <div className="divjustificadoizq">
+            <span className="time_date mr-2"> {horaMes(msg.createdAt)}</span>
+            {msg.leido ? (
+              <i className="fa fa-check-double"></i>
+            ) : (
+              <i className="fa fa-check"></i>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );

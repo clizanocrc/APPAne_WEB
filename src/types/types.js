@@ -88,5 +88,8 @@ export const types = {
   hideLoadingMensaje: "[APP] Hide Loading Mensaje",
 
   activarChat: "[Chat Activa Chat]",
-  cargaChat: "[Chat] carga Chat",
+  cargaChat: "[Chat] Carga Chat",
+  resgistraMensajeChat: "[Chat] Resitra Mensaje",
+  leidoMensajeChat: "[Chat] Mensaje Leido",
+  cargaChatNoLeido: "[Chat] Chat no Leído",
 };
