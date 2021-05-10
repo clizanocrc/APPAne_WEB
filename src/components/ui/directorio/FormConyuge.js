@@ -3,7 +3,11 @@ import moment from "moment";
 import React, { useContext } from "react";
 import { MatrimoniosContext } from "../../../context/MatrimoniosContext";
 import { fechaDifCumple } from "../../../helpers/fechaDef";
-import { SelectDateddMMView, TextControlView } from "../atom/FormControls";
+import {
+  SelectDateddMMView,
+  TextControlView,
+  TextControlEmailView,
+} from "../atom/FormControls";
 
 export const FormConyuge = ({ genero }) => {
   const { matrimonios } = useContext(MatrimoniosContext);
@@ -39,7 +43,7 @@ export const FormConyuge = ({ genero }) => {
         <Divider className="mt-3 mb-3" />
         <TextControlView label={"Apellido"} value={conyuge.apellido} />
         <TextControlView label={"Teléfono"} value={conyuge.telefono} />
-        <TextControlView label={"Email"} value={conyuge.email} />
+        <TextControlEmailView label={"Email"} value={conyuge.email} />
         <SelectDateddMMView
           label={"Nacimiento:"}
           value={moment(conyuge.fechaNacimiento).toDate()}

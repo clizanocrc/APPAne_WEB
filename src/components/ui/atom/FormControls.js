@@ -56,6 +56,26 @@ export const TextControlView = ({ label, value }) => {
     </div>
   );
 };
+
+export const TextControlEmailView = ({ label, value }) => {
+  const destino = `mailto: ${value}`;
+  return (
+    <div className="input-group col-md-12" style={{ alignItems: "center" }}>
+      <label className="mr-2  col-md-2" style={{ textAlign: "end" }}>
+        {label}:
+      </label>
+      <a
+        style={{
+          fontSize: 20,
+        }}
+        href={destino}
+      >
+        {value}
+      </a>
+    </div>
+  );
+};
+
 export const TextControlCol = ({
   label,
   name,

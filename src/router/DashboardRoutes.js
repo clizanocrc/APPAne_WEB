@@ -5,6 +5,7 @@ import { NavbarMain } from "../components/ui/NavbarMain";
 import { CalendarModal } from "../pages/calendario/CalendarModal";
 
 import {
+  AcercaDe,
   PrincipalPage,
   UsuariosPage,
   AdminPage,
@@ -57,6 +58,7 @@ export const DashboardRoutes = () => {
           <Route exact path="/home/param" component={ParamPage} />
           <Route exact path="/home/perfil" component={PerfilPage} />
           <Route exact path="/home/sendnotifi" component={NotificacionSend} />
+          <Route exact path="/home/info" component={AcercaDe} />
 
           <Route exact path="/home/notifis" component={NotiPage} />
           <Route exact path="/home/notinoread" component={NotiNew} />

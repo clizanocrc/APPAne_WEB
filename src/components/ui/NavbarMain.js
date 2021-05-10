@@ -51,6 +51,11 @@ export const NavbarMain = () => {
               caption="Calendario"
               // icon="fa fa-calendar-alt"
             />
+            <MenuItem
+              route="/home/info"
+              caption="Info"
+              // icon="fa fa-calendar-alt"
+            />
           </div>
         </div>
         <SearchForm />

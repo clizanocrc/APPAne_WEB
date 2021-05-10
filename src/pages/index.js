@@ -5,6 +5,7 @@ import { MatrimoniosPage } from "./directorio/MatrimoniosPage";
 import { MatrimonioPage } from "./directorio/MatrimonioPage";
 import { MatrimoniosPageAdd } from "./directorio/MatrimoniosPageAdd";
 import { ParamPage } from "./admin/ParamPage";
+import { AcercaDe } from "./admin/AcercaDe";
 import { PerfilPage } from "./usuarios/PerfilPage";
 import { PrincipalPage } from "./PrincipalPage";
 import { SacerdotesPage } from "./directorio/SacerdotesPage";
@@ -35,6 +36,7 @@ import { NotificacionesSends } from "./notificaciones/NotificacionesSends";
 import { NotificacionPage } from "./notificaciones/NotificacionPage";
 
 export {
+  AcercaDe,
   AdminPage,
   BlogPage,
   BlogsPage,

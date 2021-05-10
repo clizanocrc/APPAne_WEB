@@ -11,6 +11,7 @@ import {
   SiNoControlView,
   TextAreaView,
   TextControlView,
+  TextControlEmailView,
 } from "../atom/FormControls";
 
 export const FormMatrimonio = () => {
@@ -58,7 +59,7 @@ export const FormMatrimonio = () => {
 
         <Divider className="mt-3 mb-3" />
         <TextControlView label={"Teléfono"} value={telefono} />
-        <TextControlView label={"Email"} value={email} />
+        <TextControlEmailView label={"Email"} value={email} />
         <TextControlView label={"Diocesis"} value={diocesisMT} />
         <BloqueControlView label={"Bloque:"} value={bloque} />
         <SiNoControlView label={"Activo:"} value={activo} />
