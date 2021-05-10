@@ -18,7 +18,7 @@ export const NotificacionesSends = () => {
       <div className="col-md-2">
         <NavbarLeft />
       </div>
-      <div className="col-md-4" style={{ height: "85vh", overflowY: "scroll" }}>
+      <div className="col-md-4" style={{ height: "87vh", overflowY: "scroll" }}>
         {notificacionesEnviadas.map((noti) => (
           <NotiCardSend key={noti.id} noti={noti} />
         ))}

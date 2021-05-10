@@ -22,7 +22,7 @@ export const ConyugePageNavbar = ({ genero }) => {
 
       <div
         className="flexbox-container-row col-md-10"
-        style={{ height: "85vh", overflowY: "scroll" }}
+        style={{ height: "87vh", overflowY: "scroll" }}
       >
         <div className="col-md-4 mt-5">
           {conyuge.images && (

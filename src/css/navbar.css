@@ -16,7 +16,8 @@
   display: -ms-flex;
   display: -webkit-flex;
   display: flex;
-  width: 99.5%;
+  /* width: 99.5%; */
+  overflow-x: hidden;
 }
 
 .flexbox-container-row {
@@ -77,6 +78,17 @@
   left: 25px;
 }
 
+.fab-div {
+  /* border-radius: 100%; */
+  /* background-color: blue; */
+  color: white;
+  bottom: 25px;
+  font-size: 20px;
+  padding: 10px;
+  position: fixed;
+  right: 100px;
+  z-index: 1000;
+}
 /* Date Picker */
 
 .react-datetime-picker input:focus {

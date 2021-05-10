@@ -14,13 +14,13 @@ export const NotificacionesSpeak = () => {
         <NavbarLeft />
       </div>
       <Divider orientation="vertical" flexItem />
-      <div className="col-md-2" style={{ height: "85vh", overflowY: "scroll" }}>
+      <div className="col-md-2" style={{ height: "87vh", overflowY: "scroll" }}>
         <UsuariosOnlineChat />
       </div>
       <div
         className="col-md-6 m-2"
         style={{
-          height: "85vh",
+          height: "87vh",
           overflowY: "none",
           borderColor: "Highlight",
           borderStyle: "solid",

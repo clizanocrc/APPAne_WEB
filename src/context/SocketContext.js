@@ -4,7 +4,7 @@ import {
   errorSimpleFire,
   exitoFire,
   notificacionFire,
-  notificacionTimer,
+  // notificacionTimer,
 } from "../helpers/messagesUI";
 import { useSocket } from "../hooks/useSocket";
 import { AuthContext } from "./AuthContext";

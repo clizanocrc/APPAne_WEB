@@ -7,6 +7,7 @@ import { MenuItem } from "./atom/MenuItem";
 import { MenuItemPerfil } from "./atom/MenuItemPerfil";
 import { SearchForm } from "./SearchForm";
 import { MenuItemNotificaciones } from "./atom/MenuItemNotificaciones";
+import { NuevosMensajesFab } from "./NuevosMensajesFab";
 
 export const NavbarMain = () => {
   const { auth, logout } = useContext(AuthContext);
@@ -19,50 +20,53 @@ export const NavbarMain = () => {
 
   return (
     // <nav className="navbar navbar-expand-sm navbar-dark bg-dark animate__animated animate__fadeInLeft">
-    <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
-      <Link className="navbar-brand" to="/">
-        <i className="fa fa-home bigicon mr-3"></i>
-        APP Ane
-      </Link>
-      <div className="navbar-collapse">
-        <div
-          className="navbar-nav"
-          // style={{
-          //   position: "absolute",
-          // }}
-        >
-          {(auth.rol === "SUPER_ADMIN_ROLE" || auth.rol === "ADMIN_ROLE") && (
+    <div style={{ overflowX: "hidden" }}>
+      <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
+        <Link className="navbar-brand" to="/">
+          <i className="fa fa-home bigicon mr-3"></i>
+          APP Ane
+        </Link>
+        <div className="navbar-collapse">
+          <div
+            className="navbar-nav"
+            // style={{
+            //   position: "absolute",
+            // }}
+          >
+            {(auth.rol === "SUPER_ADMIN_ROLE" || auth.rol === "ADMIN_ROLE") && (
+              <MenuItem
+                route="/home/admin"
+                caption="Parámetros"
+                // icon="fa fa-cogs"
+              />
+            )}
             <MenuItem
-              route="/home/admin"
-              caption="Parámetros"
-              // icon="fa fa-cogs"
+              route="/home/directorio"
+              caption="Directorio"
+              // icon="fa fa-address-card"
             />
-          )}
-          <MenuItem
-            route="/home/directorio"
-            caption="Directorio"
-            // icon="fa fa-address-card"
-          />
-          <MenuItem route="/home/blog" caption="Blog" />
-          <MenuItem
-            route="/home/calendario"
-            caption="Calendario"
-            // icon="fa fa-calendar-alt"
-          />
+            <MenuItem route="/home/blog" caption="Blog" />
+            <MenuItem
+              route="/home/calendario"
+              caption="Calendario"
+              // icon="fa fa-calendar-alt"
+            />
+          </div>
         </div>
-      </div>
-      <SearchForm />
-      <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
-        <ul className="navbar-nav ml-auto">
-          <Divider orientation="vertical" flexItem />
-          <MenuItemNotificaciones route="/home/notifis" />
-          <Divider orientation="vertical" flexItem />
-          <MenuItemPerfil route="/home/perfil" caption={auth.name} />
-          <button className="btn btn-outline-danger" onClick={handleLogout}>
-            Salir
-          </button>
-        </ul>
-      </div>
-    </nav>
+        <SearchForm />
+        <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
+          <ul className="navbar-nav ml-auto">
+            <Divider orientation="vertical" flexItem />
+            <MenuItemNotificaciones route="/home/notifis" />
+            <Divider orientation="vertical" flexItem />
+            <MenuItemPerfil route="/home/perfil" caption={auth.name} />
+            <button className="btn btn-outline-danger" onClick={handleLogout}>
+              Salir
+            </button>
+          </ul>
+        </div>
+      </nav>
+      <NuevosMensajesFab />
+    </div>
   );
 };

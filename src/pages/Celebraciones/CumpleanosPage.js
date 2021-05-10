@@ -36,7 +36,7 @@ export const CumpleanosPage = ({ genero = "F" }) => {
   const aniFut = cumpleanosFuturos(aniversarios);
 
   return (
-    <div style={{ height: "85vh", overflowY: "scroll" }}>
+    <div style={{ height: "87vh", overflowY: "scroll" }}>
       {genero === "F" ? <h6>Cumpleañeras</h6> : <h6>Cumpleañeros</h6>}
 
       {aniHoy.length > 0 ? (

@@ -26,7 +26,7 @@ export const AniversariosPage = () => {
   const aniFut = aniversariosFuturos(aniversarios);
 
   return (
-    <div style={{ height: "85vh", overflowY: "scroll" }}>
+    <div style={{ height: "87vh", overflowY: "scroll" }}>
       <h6>Aniversarios</h6>
 
       {aniHoy.length > 0 ? (

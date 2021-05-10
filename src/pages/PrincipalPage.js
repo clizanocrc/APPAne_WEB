@@ -6,6 +6,7 @@ import imgEMM from "../assets/emm.png";
 import { BlogPageList, EventsPage, UsuariosOnline } from ".";
 import { ExternalLink } from "../components/ui/atom/FormControls";
 import { AppContext } from "../context/AppContext";
+// import { NuevosMensajesFab } from "../components/ui/NuevosMensajesFab";
 
 export const PrincipalPage = () => {
   const { state } = useContext(AppContext);
@@ -22,7 +23,7 @@ export const PrincipalPage = () => {
       <div
         // className="col-md-2 mt-2 animate__animated animate__pulse"
         className="col-md-2 mt-2"
-        style={{ height: "85vh", overflowY: "scroll" }}
+        style={{ height: "87vh", overflowY: "scroll" }}
       >
         <ExternalLink
           url="https://www.instagram.com/encuentromatrimonialcr"
@@ -50,10 +51,14 @@ export const PrincipalPage = () => {
         <p>Últimas 2 publicaciones en el Blog</p>
         <BlogPageList />
       </div>
-      <div className="col-md-3" style={{ height: "85vh", overflowY: "scroll" }}>
+      <div
+        className="col-md-3"
+        style={{ height: "87vh", overflowY: "scroll", overflowX: "hidden" }}
+      >
         <h6 className="ml-2">Próximos Eventos</h6>
         <EventsPage />
       </div>
+      {/* <NuevosMensajesFab /> */}
     </div>
   );
 };

@@ -74,7 +74,7 @@ export const CalendarScreen = () => {
             events={eventos}
             startAccessor="start"
             endAccessor="end"
-            style={{ height: "85vh" }}
+            style={{ height: "87vh" }}
             messages={messages}
             eventPropGetter={eventStyleGetter}
             onSelectEvent={onSelectEvent}
@@ -86,7 +86,7 @@ export const CalendarScreen = () => {
           />
         </div>
       </div>
-      <div className="col-md-2" style={{ height: "85vh", overflowY: "scroll" }}>
+      <div className="col-md-2" style={{ height: "87vh", overflowY: "scroll" }}>
         <h6>Eventos en el tiempo</h6>
         <EventsPageCol />
         {(auth.rol === "ADMIN_ROLE" || auth.rol === "SUPER_ADMIN_ROLE") && (

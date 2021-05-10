@@ -25,7 +25,7 @@ export const BlogsPage = () => {
 
       <div
         className="flexbox-container-col col-md-9"
-        style={{ height: "85vh", overflowY: "scroll" }}
+        style={{ height: "87vh", overflowY: "scroll" }}
       >
         <div>
           {blogsRender.map((blog) => (

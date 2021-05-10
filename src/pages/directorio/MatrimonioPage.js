@@ -11,7 +11,7 @@ export const MatrimonioPage = () => {
       </div>
       <div
         className="col-md-10"
-        style={{ height: "85vh", overflowY: "scroll" }}
+        style={{ height: "87vh", overflowY: "scroll" }}
       >
         <FormMatrimonio />
         <FormConyuge genero="F" />

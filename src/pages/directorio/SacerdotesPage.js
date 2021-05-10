@@ -14,7 +14,7 @@ export const SacerdotesPage = () => {
 
       <div
         className="col-md-10"
-        style={{ height: "85vh", overflowY: "scroll" }}
+        style={{ height: "87vh", overflowY: "scroll" }}
       >
         <div className="card-columns animate__animated animate__fadeIn mt-2">
           {matrimonios.sacerdotes.map((sacerdote) => (

@@ -47,6 +47,7 @@ export const DashboardRoutes = () => {
       <BlogComentariosModal />
       <NotificacionCreaModal />
       <NavbarMain />
+
       <div>
         <Switch>
           <Route exact path="/home" component={PrincipalPage} />

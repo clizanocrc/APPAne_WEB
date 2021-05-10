@@ -21,7 +21,7 @@ export const NotificacionesRead = () => {
         <NavbarLeft />
       </div>
 
-      <div className="col-md-4" style={{ height: "85vh", overflowY: "scroll" }}>
+      <div className="col-md-4" style={{ height: "87vh", overflowY: "scroll" }}>
         {leidos.map((noti) => (
           <NotiCard key={noti.id} noti={noti} />
         ))}

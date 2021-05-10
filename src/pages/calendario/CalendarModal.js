@@ -209,11 +209,11 @@ export const CalendarModal = () => {
             </small>
           </div>
           {!enabledButtons() && (
-            <>
+            <div className="divjustificadocentro">
               <button
                 disabled={enabledButtons()}
                 type="submit"
-                className="btn btn-outline-primary btn-block"
+                className="btn btn-outline-primary btn-block mr-2 mt-lg-1"
               >
                 <i className="far fa-save"></i>
                 <span> Guardar</span>
@@ -221,12 +221,12 @@ export const CalendarModal = () => {
               <button
                 onClick={handleDelete}
                 disabled={enabledButtons()}
-                className="btn btn-outline-danger btn-block"
+                className="btn btn-outline-danger btn-block ml-2"
               >
                 <i className="far fa-trash-alt"></i>
                 <span> Eliminar</span>
               </button>
-            </>
+            </div>
           )}
         </form>
       </div>

@@ -4,7 +4,7 @@ import { OutgoingMsg } from "./OutgoingMsg";
 import { SendMessage } from "./SendMessage";
 import { SocketContext } from "../../../context/SocketContext";
 import { AuthContext } from "../../../context//AuthContext";
-import { scrollToBottonAnimated } from "../../../helpers/scrollToBotton";
+import { scrollToBotton } from "../../../helpers/scrollToBotton";
 import { UsuariosContext } from "../../../context/UsuariosContext";
 import { Divider } from "@material-ui/core";
 
@@ -14,7 +14,8 @@ export const Messages = () => {
   const { auth } = useContext(AuthContext);
 
   useEffect(() => {
-    scrollToBottonAnimated("messagesAll");
+    // scrollToBottonAnimated("messagesAll");
+    scrollToBotton("messagesAll");
   }, [socketState]);
 
   const mensajes = socketState.chat.filter(

@@ -14,12 +14,13 @@ export const BlogCard = ({ blog }) => {
       style={{
         // backgroundColor: "#EFECE8",
         borderWidth: "1px",
-        borderColor: "powderblue",
-        border: "double",
+        borderColor: "lightblue",
+        border: "solid",
         margin: 5,
-        borderTopLeftRadius: 25,
-        borderBottomRightRadius: 25,
-        // borderRadius: 25,
+        borderTopLeftRadius: 50,
+        borderBottomRightRadius: 50,
+        borderBottomLeftRadius: 10,
+        borderTopRightRadius: 10,
       }}
     >
       <div

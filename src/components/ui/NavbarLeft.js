@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { ConstruyeMenu } from "./menu/ConstruyeMenu";
 
 import "../../css/navbar.css";
+// import { NuevosMensajesFab } from "./NuevosMensajesFab";
 // import { tamVentana } from "../../helpers/sizeWindow";
 
 export const NavbarLeft = () => {
@@ -23,6 +24,7 @@ export const NavbarLeft = () => {
       // style={{ height: `${tam[1] - 60}px` }}
     >
       <ConstruyeMenu option={option} />
+      {/* <NuevosMensajesFab /> */}
     </div>
   );
 };

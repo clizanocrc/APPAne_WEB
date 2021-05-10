@@ -40,7 +40,7 @@ export const NotificacionSend = () => {
       <div className="col-md-2">
         <NavbarLeft />
       </div>
-      <div className="col-md-3" style={{ height: "85vh", overflowY: "scroll" }}>
+      <div className="col-md-3" style={{ height: "87vh", overflowY: "scroll" }}>
         <UsuariosOnlineNotificaciones />
       </div>
 
