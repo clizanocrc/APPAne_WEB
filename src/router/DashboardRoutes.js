@@ -39,6 +39,7 @@ import {
 } from "../pages";
 import { BlogComentariosModal } from "../pages/blog/BlogComentariosModal";
 import { NotificacionCreaModal } from "../pages/notificaciones/NotificacionCreaModal";
+import { DirectorioSearchModal } from "../pages/directorio/DirectorioSearchModal";
 
 export const DashboardRoutes = () => {
   return (
@@ -47,6 +48,7 @@ export const DashboardRoutes = () => {
       <CalendarModal />
       <BlogComentariosModal />
       <NotificacionCreaModal />
+      <DirectorioSearchModal />
       <NavbarMain />
 
       <div>

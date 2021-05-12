@@ -108,6 +108,18 @@ export const appReducer = (state, action) => {
         ...state,
         isLoadingMensaje: false,
       };
+    //Search
+    case types.showSearchModal:
+      return {
+        ...state,
+        isLoadingSearch: true,
+      };
+    case types.hideSearchModal:
+      return {
+        ...state,
+        isLoadingSearch: false,
+      };
+
     default:
       return state;
   }

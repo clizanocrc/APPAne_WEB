@@ -5,9 +5,9 @@ import { Divider } from "@material-ui/core";
 import { AuthContext } from "../../context/AuthContext";
 import { MenuItem } from "./atom/MenuItem";
 import { MenuItemPerfil } from "./atom/MenuItemPerfil";
-import { SearchForm } from "./SearchForm";
 import { MenuItemNotificaciones } from "./atom/MenuItemNotificaciones";
 import { NuevosMensajesFab } from "./NuevosMensajesFab";
+import { SearchButton } from "./atom/SearchButton";
 
 export const NavbarMain = () => {
   const { auth, logout } = useContext(AuthContext);
@@ -58,7 +58,7 @@ export const NavbarMain = () => {
             />
           </div>
         </div>
-        <SearchForm />
+        <SearchButton />
         <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
           <ul className="navbar-nav ml-auto">
             <Divider orientation="vertical" flexItem />

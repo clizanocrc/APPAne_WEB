@@ -150,6 +150,18 @@ export const AppProvider = ({ children }) => {
     });
   };
 
+  const showModalSearch = () => {
+    dispatch({
+      type: types.showSearchModal,
+    });
+  };
+
+  const hideModalSearch = () => {
+    dispatch({
+      type: types.hideSearchModal,
+    });
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -171,6 +183,8 @@ export const AppProvider = ({ children }) => {
         hideModalComentarios,
         showModalMensajes,
         hideModalMensajes,
+        showModalSearch,
+        hideModalSearch,
       }}
     >
       {children}

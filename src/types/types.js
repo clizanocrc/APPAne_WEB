@@ -52,6 +52,9 @@ export const types = {
   hideLoading: "[APP] Hide Loading",
   resetState: "[APP] Reset State",
 
+  showSearchModal: "[APP] Show Search",
+  hideSearchModal: "[APP] Hide Search",
+
   showLoadingCalendar: "[APP] Show Loading Calendar",
   hideLoadingCalendar: "[APP] Hide Loading Calendar",
   eventosCargados: "[Eventos] Eventos Cargados",

@@ -6,7 +6,7 @@ import imgEMM from "../assets/emm.png";
 import { BlogPageList, EventsPage, UsuariosOnline } from ".";
 import { ExternalLink } from "../components/ui/atom/FormControls";
 import { AppContext } from "../context/AppContext";
-// import { NuevosMensajesFab } from "../components/ui/NuevosMensajesFab";
+import { NuevosMensajesFab } from "../components/ui/NuevosMensajesFab";
 
 export const PrincipalPage = () => {
   const { state } = useContext(AppContext);
@@ -58,7 +58,7 @@ export const PrincipalPage = () => {
         <h6 className="ml-2">Próximos Eventos</h6>
         <EventsPage />
       </div>
-      {/* <NuevosMensajesFab /> */}
+      <NuevosMensajesFab />
     </div>
   );
 };

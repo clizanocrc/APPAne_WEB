@@ -1,10 +1,12 @@
 import { Divider, Link } from "@material-ui/core";
 import React, { useContext } from "react";
 import { useHistory } from "react-router";
+import { AppContext } from "../../../context/AppContext";
 import { MatrimoniosContext } from "../../../context/MatrimoniosContext";
 
 export const ItemSearch = ({ item }) => {
   const { selecMatrimonio, selecSacerdote } = useContext(MatrimoniosContext);
+  const { hideModalSearch } = useContext(AppContext);
   const history = useHistory();
   const ruta = history.location.pathname.split("/");
   const option = ruta[ruta.length - 1];
@@ -16,6 +18,7 @@ export const ItemSearch = ({ item }) => {
 
   const handleClick = (e) => {
     e.preventDefault();
+
     switch (option) {
       case "matrimonios":
       case "matrimonio":
@@ -31,6 +34,7 @@ export const ItemSearch = ({ item }) => {
       default:
         break;
     }
+    hideModalSearch();
   };
 
   return (
