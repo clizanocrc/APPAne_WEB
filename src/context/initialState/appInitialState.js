@@ -7,5 +7,5 @@ export const initialState = {
   params: [],
   isLoadingComentarios: false,
   isLoadingMensaje: false,
-  isLoadingSearch: true,
+  isLoadingSearch: false,
 };
