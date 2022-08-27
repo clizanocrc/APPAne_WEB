@@ -1,5 +1,5 @@
 import { AdminPage } from "./admin/AdminPage";
-import { CelebracionesPage } from "./celebraciones/CelebracionesPage";
+import { CelebracionesPage } from "./celebracion/CelebracionesPage";
 import { DirectorioPage } from "./directorio/DirectorioPage";
 import { MatrimoniosPage } from "./directorio/MatrimoniosPage";
 import { MatrimonioPage } from "./directorio/MatrimonioPage";
