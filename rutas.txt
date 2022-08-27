@@ -4,3 +4,7 @@ REACT_APP_API_URL=http://localhost:8080/api
 
 Producción
 REACT_APP_API_URL=https://appanecr.herokuapp.com/api
+
+
+Vercel
+REACT_APP_API_URL=https://appa-ne-server.vercel.app/api

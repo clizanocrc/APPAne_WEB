@@ -7,5 +7,5 @@ export const initialState = {
   notificacionActiva: [],
   chat: [],
   chatNoLeido: [],
-  chatActivo: null, //uid del usuario al que quiero enviar un mensaje
+  chatActivo: null,
 };

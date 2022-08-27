@@ -3,6 +3,8 @@ import { Divider } from "@material-ui/core";
 import { AppContext } from "../context/AppContext";
 import moment from "moment";
 import { DateColorEvent } from "../helpers/eventsFilter";
+
+
 export const EventCard = (event) => {
   const { showModalLoadingCalendar, selecEvento } = useContext(AppContext);
   const fecha = moment(event.start).format("DD-MMMM-yyyy");

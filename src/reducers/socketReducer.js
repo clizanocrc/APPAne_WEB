@@ -101,7 +101,6 @@ export const socketReducer = (socketState, action) => {
       };
 
     case types.leidoMensajeChat:
-      // console.log(action.payload);
       return {
         ...socketState,
         chat: socketState.chat.map((e) =>
