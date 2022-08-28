@@ -105,7 +105,7 @@ export const LoginPage = () => {
 
         <div className="col text-right">
           <Link to="/auth/register" className="txt1">
-            Nueva cuenta?
+            Crear cuenta!
           </Link>
         </div>
       </div>
